@@ -1,4 +1,4 @@
 streamlit
 langchain
 langchain-upstage
-PyPDF2
+requests

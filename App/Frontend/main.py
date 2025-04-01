@@ -1,10 +1,11 @@
 import streamlit as st
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage
 import PyPDF2
+import os
 
-# Set up your OpenAI API key (alternatively, set this in your environment)
-# st.secrets["OPENAI_API_KEY"] = "your-openai-api-key"  # Optionally use Streamlit secrets
+# Use secret if available
+openai_api_key = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
 
 st.title("Basic Chatbot (v1.0) using LangChain & OpenAI")
 
@@ -30,8 +31,8 @@ if st.button("Send"):
     else:
         prompt = user_input
 
-    # Initialize the ChatOpenAI model from LangChain
-    chat = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
+    # Initialize the ChatOpenAI model from LangChain with API key
+    chat = ChatOpenAI(openai_api_key=openai_api_key, model_name="gpt-3.5-turbo", temperature=0.7)
     
     # Send the prompt to ChatGPT and get the response
     response = chat([HumanMessage(content=prompt)])

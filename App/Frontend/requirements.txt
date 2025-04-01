@@ -1,4 +1,5 @@
 streamlit
-langchain
-langchain-openai
-openai
+langchain>=0.1.7
+langchain-openai>=0.0.5
+openai>=1.0.0
+PyPDF2

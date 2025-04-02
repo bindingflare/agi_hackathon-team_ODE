@@ -79,82 +79,88 @@ with tab1:
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
 
+    top_container = st.container()
+
     with st.form("chat_input_form", clear_on_submit=False):
         user_text = st.text_area("Type your message")
         uploaded_file = st.file_uploader("Upload a PDF (optional)", type=["pdf"])
         force_ocr = st.checkbox("Force OCR (for scanned/image PDFs)", value=False)
         submit_button = st.form_submit_button("Send")
         
-    status_placeholder = st.empty() 
+    with top_container:
+        status_placeholder = st.empty() 
 
     if submit_button and (user_text or uploaded_file):
-        status_placeholder.info("Loading...")
+        with top_container:
+            status_placeholder.info("Loading...")
 
-        user_msg = {
-            "text": user_text,
-            "file": uploaded_file
-        }
-        st.session_state.chat_history.append(user_msg)
+            user_msg = {
+                "text": user_text,
+                "file": uploaded_file
+            }
+            st.session_state.chat_history.append(user_msg)
 
-        if TEST_DEBUG_MODE:
-            # Show user message
-            with st.chat_message("user"):
-                if user_msg["text"]:
-                    st.markdown(user_msg["text"])
-                if user_msg["file"]:
-                    st.markdown("Uploaded PDF:")
-                    st.write(user_msg["file"].name)
+            if TEST_DEBUG_MODE:
+                # Show user message
+                with st.chat_message("user"):
+                    if user_msg["text"]:
+                        st.markdown(user_msg["text"])
+                    if user_msg["file"]:
+                        st.markdown("Uploaded PDF:")
+                        st.write(user_msg["file"].name)
 
-        # Initialize prompt
-        prompt = user_msg["text"]
-        extracted_text = ""
-        
-        col1, col2 = st.columns(2, gap="large")
-
-        # If PDF exists, extract and append context
-        if uploaded_file:
-            file_bytes = uploaded_file.read()
-            extracted_text = process_document_with_upstage(file_bytes)
-
-            if extracted_text:
-                if TEST_DEBUG_MODE:
-                    st.subheader("📄 Parsed Document Content")
-                    st.code(extracted_text[:3000], language="markdown")
-
-                prompt += f"\n\nAdditional context from document:\n{extracted_text}"
-
-                if TEST_DEBUG_MODE:
-                    st.subheader("🖥️ Rendered Document HTML")
-                    st.components.v1.html(extracted_text, height=600, scrolling=True)
-
-            # Show PDF viewer
-            base64_pdf = base64.b64encode(file_bytes).decode("utf-8")
-            pdf_display = f"""
-                <iframe 
-                    src="data:application/pdf;base64,{base64_pdf}" 
-                    width="700" 
-                    height="1000" 
-                    type="application/pdf">
-                </iframe>
-            """
-            with col1:
-                st.header("PDF Editor")
-                st.markdown(pdf_display, unsafe_allow_html=True)
-
-        else:
-            status_placeholder.warning("No PDF uploaded, defaulting to prompt response.")
-
-        # Display assistant response
-        with col2:
-            status_placeholder.success("✅ Done!")
+            # Initialize prompt
+            prompt = user_msg["text"]
+            extracted_text = ""
             
-            st.header("🤖 Solar Response")
-            with st.chat_message("assistant"):
-                st.write_stream(stream_response(prompt))
+            col1, col2 = st.columns(2, gap="large")
+
+            # If PDF exists, extract and append context
+            if uploaded_file:
+                file_bytes = uploaded_file.read()
+                extracted_text = process_document_with_upstage(file_bytes)
+
+                if extracted_text:
+                    if TEST_DEBUG_MODE:
+                        st.subheader("📄 Parsed Document Content")
+                        st.code(extracted_text[:3000], language="markdown")
+
+                    prompt += f"\n\nAdditional context from document:\n{extracted_text}"
+
+                    if TEST_DEBUG_MODE:
+                        st.subheader("🖥️ Rendered Document HTML")
+                        st.components.v1.html(extracted_text, height=600, scrolling=True)
+
+                # Show PDF viewer
+                base64_pdf = base64.b64encode(file_bytes).decode("utf-8")
+                pdf_display = f"""
+                    <iframe 
+                        src="data:application/pdf;base64,{base64_pdf}" 
+                        width="700" 
+                        height="1000" 
+                        type="application/pdf">
+                    </iframe>
+                """
+                with col1:
+                    st.header("PDF Editor")
+                    st.markdown(pdf_display, unsafe_allow_html=True)
+
+            else:
+                status_placeholder.warning("No PDF uploaded, defaulting to prompt response.")
+
+            # Display assistant response
+            with col2:
+                status_placeholder.success("✅ Done!")
+                
+                st.header("🤖 Solar Response")
+                with st.chat_message("assistant"):
+                    st.write_stream(stream_response(prompt))
 
 ## STAGE 2
 with tab2:
     st.header("Step 2: Upload form for internal scan")
+
+    top_container_2 = st.container()
     
     with st.form("pdf_edit_form", clear_on_submit=False):
         pdf_file_edit = st.file_uploader("Upload editted PDF file", type=["pdf"])
@@ -162,48 +168,51 @@ with tab2:
         submit_pdf_button = st.form_submit_button("Send PDF")
 
     if submit_pdf_button:
-        if pdf_file_edit is not None:
-            # Streamlit's uploaded_file is already a file-like object
-            files = {
-                "file": (pdf_file_edit.name, pdf_file_edit, "application/pdf")
-            }
+        with top_container_2:
+            status_placeholder2 = st.empty()
 
-            response = requests.post("http://localhost:8001/check-pdf", files=files)
+            if pdf_file_edit is not None: 
+                # Streamlit's uploaded_file is already a file-like object
+                files = {
+                    "file": (pdf_file_edit.name, pdf_file_edit, "application/pdf")
+                }
 
-            if response.status_code == 200:
-                st.success("Check complete.")
-            else:
-                st.error(f"Error: {response.status_code}")
-            pdf_file_edit.seek(0)
-            
-            # PDF Viewer: Display raw PDF as embedded iframe
-            file_bytes_edit = pdf_file_edit.read()
-            base64_pdf_edit = base64.b64encode(file_bytes_edit).decode('utf-8')
-            pdf_display_edit = f"""
-                <iframe 
-                    src="data:application/pdf;base64,{base64_pdf_edit}" 
-                    width="700" 
-                    height="1000" 
-                    type="application/pdf">
-                </iframe>
-            """
-            
-            col1, col2 = st.columns(2, gap="medium", vertical_alignment="top", border=False)
-            
-            # Add content to the first column
-            with col1:
-                st.header("PDF Editor")
-                st.markdown(pdf_display_edit, unsafe_allow_html=True)
+                response = requests.post("http://localhost:8001/check-pdf", files=files)
 
-            # Add content to the second column
-            with col2:
-                st.header("Internal scan Response")
-
-                # Send prompt to Solar (ChatUpstage)
                 if response.status_code == 200:
-                    st.json(response.json())
+                    status_placeholder2.success("Check complete.")
                 else:
-                    st.write(response.text)
-        else:
-            st.error(f"Please upload a file")
+                    status_placeholder2.error(f"Error: {response.status_code}")
+                pdf_file_edit.seek(0)
+                
+                # PDF Viewer: Display raw PDF as embedded iframe
+                file_bytes_edit = pdf_file_edit.read()
+                base64_pdf_edit = base64.b64encode(file_bytes_edit).decode('utf-8')
+                pdf_display_edit = f"""
+                    <iframe 
+                        src="data:application/pdf;base64,{base64_pdf_edit}" 
+                        width="700" 
+                        height="1000" 
+                        type="application/pdf">
+                    </iframe>
+                """
+                
+                col1, col2 = st.columns(2, gap="medium", vertical_alignment="top", border=False)
+                
+                # Add content to the first column
+                with col1:
+                    st.header("PDF Editor")
+                    st.markdown(pdf_display_edit, unsafe_allow_html=True)
+
+                # Add content to the second column
+                with col2:
+                    st.header("Internal scan Response")
+
+                    # Send prompt to Solar (ChatUpstage)
+                    if response.status_code == 200:
+                        st.json(response.json())
+                    else:
+                        st.write(response.text)
+            else:
+                status_placeholder2.error(f"Please upload a file")
 

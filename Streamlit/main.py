@@ -50,11 +50,10 @@ def process_document_with_upstage(file_bytes):
             st.subheader("📦 Raw 'content.text' from Document API")
             st.code(text_content[:3000], language="markdown")
 
-        return text_content
+        return text_content, None
 
     except Exception as e:
-        st.error(f"Document API error: {e}")
-        return None
+        return None, e
     
 def stream_response(prompt):
     chat = ChatUpstage(
@@ -118,7 +117,7 @@ with tab1:
             # If PDF exists, extract and append context
             if uploaded_file:
                 file_bytes = uploaded_file.read()
-                extracted_text = process_document_with_upstage(file_bytes)
+                extracted_text, error = process_document_with_upstage(file_bytes)
 
                 if extracted_text:
                     if TEST_DEBUG_MODE:
@@ -130,6 +129,8 @@ with tab1:
                     if TEST_DEBUG_MODE:
                         st.subheader("🖥️ Rendered Document HTML")
                         st.components.v1.html(extracted_text, height=600, scrolling=True)
+                elif error:
+                    status_placeholder.error(f"Document API error: {error}")
 
                 # Show PDF viewer
                 base64_pdf = base64.b64encode(file_bytes).decode("utf-8")
@@ -212,7 +213,7 @@ with tab2:
                     if response.status_code == 200:
                         st.json(response.json())
                     else:
-                        st.write(response.text)
+                        status_placeholder2.error(response.text)
             else:
                 status_placeholder2.error(f"Please upload a file")
 

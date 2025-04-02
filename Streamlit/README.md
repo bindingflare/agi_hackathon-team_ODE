@@ -3,6 +3,7 @@
 ```
 Streamlit/
 ├── .streamlit/
+│   ├── config.toml
 │   └── sectets.toml # UPSTAGE_API_KEY 삽입
 ├── main.py # 메인 코드
 ├── requirements.txt

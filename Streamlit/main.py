@@ -135,15 +135,14 @@ with tab1:
                 # Show PDF viewer
                 base64_pdf = base64.b64encode(file_bytes).decode("utf-8")
                 pdf_display = f"""
-                    <iframe 
+                    <embed 
                         src="data:application/pdf;base64,{base64_pdf}" 
                         width="700" 
                         height="1000" 
-                        type="application/pdf">
-                    </iframe>
-                """
+                        type="application/pdf" />
+                    """
                 with col1:
-                    st.header("PDF Editor")
+                    st.subheader("PDF Editor")
                     st.markdown(pdf_display, unsafe_allow_html=True)
 
             else:
@@ -153,7 +152,7 @@ with tab1:
             with col2:
                 status_placeholder.success("✅ Done!")
                 
-                st.header("🤖 Solar Response")
+                st.subheader("🤖 Solar Response")
                 with st.chat_message("assistant"):
                     st.write_stream(stream_response(prompt))
 
@@ -202,12 +201,12 @@ with tab2:
                 
                 # Add content to the first column
                 with col1:
-                    st.header("PDF Editor")
+                    st.subheader("PDF Editor")
                     st.markdown(pdf_display_edit, unsafe_allow_html=True)
 
                 # Add content to the second column
                 with col2:
-                    st.header("Internal scan Response")
+                    st.subheader("Internal scan Response")
 
                     # Send prompt to Solar (ChatUpstage)
                     if response.status_code == 200:

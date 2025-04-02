@@ -80,7 +80,7 @@ with tab1:
         st.session_state.chat_history = []
 
     with st.form("chat_input_form", clear_on_submit=False):
-        user_text = st.text_input("Type your message")
+        user_text = st.text_area("Type your message")
         uploaded_file = st.file_uploader("Upload a PDF (optional)", type=["pdf"])
         force_ocr = st.checkbox("Force OCR (for scanned/image PDFs)", value=False)
         submit_button = st.form_submit_button("Send")

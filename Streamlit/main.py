@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 from langchain_upstage import ChatUpstage
 from langchain.schema import HumanMessage
 import requests
@@ -135,17 +136,15 @@ with tab1:
                 # Show PDF viewer
                 base64_pdf = base64.b64encode(file_bytes).decode("utf-8")
                 pdf_display = f"""
-                    <iframe  
-                        src="data:application/pdf;base64,{base64_pdf}" 
-                        width="700" 
-                        height="1000" 
-                        type="application/pdf">
-                        <p>Your browser does not support PDFs.</p>
-                    </iframe>
-                    """
+                <embed 
+                    src="data:application/pdf;base64,{base64_pdf}" 
+                    width="700" 
+                    height="1000" 
+                    type="application/pdf">
+                """
                 with col1:
                     st.subheader("PDF Editor")
-                    st.components.v1.html(pdf_display, height=1020)
+                    st.markdown(pdf_display, unsafe_allow_html=True)
 
             else:
                 status_placeholder.warning("No PDF uploaded, defaulting to prompt response.")
@@ -191,12 +190,11 @@ with tab2:
                 file_bytes_edit = pdf_file_edit.read()
                 base64_pdf_edit = base64.b64encode(file_bytes_edit).decode('utf-8')
                 pdf_display_edit = f"""
-                    <iframe 
+                    <embed 
                         src="data:application/pdf;base64,{base64_pdf_edit}" 
                         width="700" 
                         height="1000" 
                         type="application/pdf">
-                    </iframe>
                 """
                 
                 col1, col2 = st.columns(2, gap="medium", vertical_alignment="top", border=False)

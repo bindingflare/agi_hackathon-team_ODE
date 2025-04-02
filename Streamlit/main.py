@@ -135,15 +135,17 @@ with tab1:
                 # Show PDF viewer
                 base64_pdf = base64.b64encode(file_bytes).decode("utf-8")
                 pdf_display = f"""
-                    <embed 
+                    <iframe  
                         src="data:application/pdf;base64,{base64_pdf}" 
                         width="700" 
                         height="1000" 
-                        type="application/pdf" />
+                        type="application/pdf">
+                        <p>Your browser does not support PDFs.</p>
+                    </iframe>
                     """
                 with col1:
                     st.subheader("PDF Editor")
-                    st.markdown(pdf_display, unsafe_allow_html=True)
+                    st.components.v1.html(pdf_display, height=1020)
 
             else:
                 status_placeholder.warning("No PDF uploaded, defaulting to prompt response.")

@@ -4,6 +4,7 @@ from langchain.schema import HumanMessage
 import requests
 import json
 import os
+import base64
 
 # Load Upstage API key
 upstage_api_key = st.secrets.get("UPSTAGE_API_KEY") or os.getenv("UPSTAGE_API_KEY")
@@ -71,14 +72,44 @@ if st.button("Send"):
             # Append to prompt
             prompt += f"\n\nAdditional context from document:\n{extracted_text}"
 
-    # Send prompt to Solar (ChatUpstage)
-    chat = ChatUpstage(
-        upstage_api_key=upstage_api_key,
-        model_name="solar-pro-241126",
-        temperature=0.7,
-    )
-    response = chat([HumanMessage(content=prompt)])
+            # Display the HTML (extracted text)
+            st.subheader("🖥️ Rendered Document HTML")
+            st.components.v1.html(extracted_text, height=600, scrolling=True)
 
-    # Show chatbot response
-    st.subheader("🤖 Solar (Upstage) Response")
-    st.write(response.content)
+        # PDF Viewer: Display raw PDF as embedded iframe
+        base64_pdf = base64.b64encode(file_bytes).decode('utf-8')
+        pdf_display = f"""
+            <iframe 
+                src="data:application/pdf;base64,{base64_pdf}" 
+                width="700" 
+                height="1000" 
+                type="application/pdf">
+            </iframe>
+        """
+
+        # pdf_display_http = f'<embed src=“http://localhost:8900/{file.name}” type=“application/pdf” width=“1000px” height=“1100px”></embed>'
+
+        col1, col2 = st.columns(2, gap="medium", vertical_alignment="top", border=False)
+
+        # Add content to the first column
+        with col1:
+            st.header("PDF Editor")
+            st.markdown(pdf_display, unsafe_allow_html=True)
+
+        # Add content to the second column
+        with col2:
+            st.header("🤖 Solar Response")
+
+            # Send prompt to Solar (ChatUpstage)e
+            chat = ChatUpstage(
+                upstage_api_key=upstage_api_key,
+                model_name="solar-pro-241126",
+                temperature=0.7,
+            )
+            response = chat([HumanMessage(content=prompt)])
+            
+            st.write(response.content)
+
+
+        # st.components.v1.html(pdf_display, height=1000, scrolling=True)
+

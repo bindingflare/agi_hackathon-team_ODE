@@ -16,7 +16,7 @@ upstage_api_key = st.secrets.get("UPSTAGE_API_KEY") or os.getenv("UPSTAGE_API_KE
 
 st.title("📄FORMula")
 
-tab1, tab2 = st.tabs(["Step 1: Form Upload", "Step 2: Form fix"])
+tab1, tab2 = st.tabs(["Step 1: Form Upload", "Step 2: Form Validate"])
 
 # Document processing function
 def process_document_with_upstage(file_bytes):
@@ -92,7 +92,7 @@ with tab1:
 
     if submit_button and (user_text or uploaded_file):
         with top_container:
-            status_placeholder.info("Loading...")
+            # status_placeholder.info("Loading...")
 
             user_msg = {
                 "text": user_text,
@@ -118,7 +118,9 @@ with tab1:
             # If PDF exists, extract and append context
             if uploaded_file:
                 file_bytes = uploaded_file.read()
-                extracted_text, error = process_document_with_upstage(file_bytes)
+
+                with st.spinner("Parsing document...", show_time=True):
+                    extracted_text, error = process_document_with_upstage(file_bytes)
 
                 if extracted_text:
                     if TEST_DEBUG_MODE:
@@ -143,7 +145,6 @@ with tab1:
                     type="application/pdf">
                 """
                 with col1:
-                    st.subheader("PDF Editor")
                     st.markdown(pdf_display, unsafe_allow_html=True)
 
             else:
@@ -151,8 +152,6 @@ with tab1:
 
             # Display assistant response
             with col2:
-                status_placeholder.success("✅ Done!")
-                
                 st.subheader("🤖 Solar Response")
                 with st.chat_message("assistant"):
                     st.write_stream(stream_response(prompt))
@@ -178,10 +177,11 @@ with tab2:
                     "file": (pdf_file_edit.name, pdf_file_edit, "application/pdf")
                 }
 
-                response = requests.post("http://localhost:8001/check-pdf", files=files)
+                with st.spinner("Checking document...", show_time=True):
+                    response = requests.post("http://localhost:8001/check-pdf", files=files)
 
                 if response.status_code == 200:
-                    status_placeholder2.success("Check complete.")
+                    status_placeholder2.success("✅ Check complete.")
                 else:
                     status_placeholder2.error(f"Error: {response.status_code}")
                 pdf_file_edit.seek(0)

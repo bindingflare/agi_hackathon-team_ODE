@@ -1,0 +1,24 @@
+{
+  "20250403_120705": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Required documentation"
+      },
+      {
+        "role": "assistant",
+        "content": "The required documentation for customs procedures varies depending on the type of trade (import or export). Here are the common documents needed for each:\n\nImport:\n1. Import Declaration: This is a formal declaration made by the importer to the customs authority, providing details about the goods being imported.\n2. Commercial Invoice: This document serves as a contract between the seller and the buyer, providing details about the goods, their value, and terms of sale.\n3. Packing List: This document provides detailed information about the contents of each package, including the quantity, weight, and dimensions.\n4. Bill of Lading (B/L) or Airway Bill (Airway B/L): This document serves as a receipt issued by a carrier for goods being shipped and contains details about the shipment.\n5. Certificate of Origin: This document verifies the country of origin of the goods.\n6. Import License: Some goods may require an import license, which allows the importer to bring specific goods into the country.\n7. Phytosanitary Certificate: This document is required for agricultural products and certifies that the goods have been inspected and are free from pests.\n8. Customs Declaration: This document provides detailed information about the goods being imported, including their HS code, value, and quantity.\n9. Proof of Payment: This can include a bank statement, payment order, or other documents that prove payment for the goods.\n\nExport:\n1. Export Declaration: This is a formal declaration made by the exporter to the customs authority, providing details about the goods being exported.\n2. Commercial Invoice: This document serves as a contract between the seller and the buyer, providing details about the goods, their value, and terms of sale.\n3. Packing List: This document provides detailed information about the contents of each package, including the quantity, weight, and dimensions.\n4. Bill of Lading (B/L) or Airway Bill (Airway B/L): This document serves as a receipt issued by a carrier for goods being shipped and contains details about the shipment.\n5. Certificate of Origin: This document verifies the country of origin of the goods.\n6. Export License: Some goods may require an export license, which allows the exporter to send specific goods out of the country.\n7. Phytosanitary Certificate: This document is required for agricultural products and certifies that the goods have been inspected and are free from pests.\n8. Customs Declaration: This document provides detailed information about the goods being exported, including their HS code, value, and quantity.\n9. Proof of Payment: This can include a bank statement, payment order, or other documents that prove payment for the goods."
+      },
+      {
+        "role": "user",
+        "content": "Proof of Payment"
+      },
+      {
+        "role": "assistant",
+        "content": "Proof of payment is a document that verifies the payment for the goods has been made. This document typically includes the following information:\n\n1. Date of payment: The date on which the payment was made.\n2. Payment amount: The total amount paid for the goods, including any additional fees or charges.\n3. Payment method: The method used to make the payment, such as wire transfer, credit card, or cash.\n4. Payee: The name of the recipient of the payment.\n5. Payer: The name of the person or company making the payment.\n6. Transaction number: A unique identifier for the payment transaction.\n\nCommon examples of proof of payment documents include:\n\n1. Bank statement: A document provided by the bank that shows the date, amount, and method of payment.\n2. Payment order: A document issued by the exporter or importer that provides details about the payment, including the amount, date, and method.\n3. Credit card receipt: A receipt provided by the credit card company, which includes the date, amount, and merchant name.\n4. Wire transfer receipt: A document provided by the bank that verifies the wire transfer was completed successfully.\n5. Invoice: A document provided by the seller that includes the payment due date and the total amount owed.\n\nIn international trade, proof of payment is an essential document that helps to ensure the transaction is legitimate and that the payment has been made in full. It is typically required by customs authorities during the import and export processes."
+      }
+    ],
+    "title": "Customs Documentation",
+    "timestamp": "20250403_120818"
+  }
+}

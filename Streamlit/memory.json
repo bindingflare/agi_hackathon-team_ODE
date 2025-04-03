@@ -1,0 +1,34 @@
+{
+    "trade_knowledge": {
+        "hs_codes": {
+            "description": "HS Code is an international standardized system of names and numbers for classifying traded products.",
+            "format": "6-digit basic code with 2-4 additional digits depending on country",
+            "examples": {
+                "850650": "Lithium-ion batteries",
+                "870323": "Passenger cars with engine capacity over 1500cc but not exceeding 3000cc"
+            }
+        },
+        "incoterms": {
+            "EXW": "Ex Works - The seller makes the goods available at their premises.",
+            "FOB": "Free on Board - The seller loads the goods on board the vessel nominated by the buyer.",
+            "CIF": "Cost, Insurance and Freight - Seller arranges and pays for transport and insurance to the named port of destination.",
+            "DDP": "Delivered Duty Paid - Seller is responsible for delivering the goods to the named place in the country of importation."
+        },
+        "customs_procedures": {
+            "import": [
+                "1. Prepare import declaration",
+                "2. Submit required documents",
+                "3. Pay duties and taxes",
+                "4. Customs inspection (if required)",
+                "5. Release of goods"
+            ],
+            "export": [
+                "1. Register as exporter",
+                "2. Prepare documentation",
+                "3. Customs declaration",
+                "4. Export inspection",
+                "5. Goods clearance"
+            ]
+        }
+    }
+} 

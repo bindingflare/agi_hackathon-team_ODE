@@ -1,0 +1,33 @@
+{
+  "chat_20250403_210703": {
+    "id": "chat_20250403_210703",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Incoterms explanations please!"
+      },
+      {
+        "role": "assistant",
+        "content": "Certainly! Incoterms, or International Commercial Terms, are a set of predefined commercial terms published by the International Chamber of Commerce (ICC). They are used in international trade to clarify the responsibilities of buyers and sellers with respect to the delivery of goods, risk, and cost allocation. Here are the explanations for some common Incoterms:\n\n1. EXW (Ex Works): The seller makes the goods available at their premises, and the buyer is responsible for all costs and risks involved in transporting the goods to the final destination.\n\n2. FOB (Free on Board): The seller is responsible for delivering the goods on board the vessel at the named port of shipment. The buyer assumes all costs and risks once the goods are on board.\n\n3. CIF (Cost, Insurance and Freight): The seller is responsible for the costs, insurance, and freight necessary to bring the goods to the destination port. However, the risk transfers to the buyer once the goods are on board the vessel.\n\n4. DDP (Delivered Duty Paid): The seller is responsible for delivering the goods to the buyer's designated location, including all costs and duties. The seller assumes all risks until the goods are delivered to the buyer.\n\nThese terms can significantly impact the cost and risk allocation between buyers and sellers in international trade, so it's important to understand them when negotiating contracts and arranging shipments."
+      },
+      {
+        "role": "user",
+        "content": "How to write CBP form 28?"
+      },
+      {
+        "role": "assistant",
+        "content": "Form 28, also known as \"Summary of Accompanying and/or Subsequent Entry Articles,\" is a form used by the U.S. Customs and Border Protection (CBP) to document the details of imported goods. It is typically required for large commercial shipments or when certain conditions apply. Here's a step-by-step guide on how to complete Form 28:\n\n1. Obtain the form: You can download Form 28 from the CBP website or request a copy from your local CBP office.\n2. Fill out the basic information: Provide the following details at the top of the form:\n\t* Importer of Record's name and address\n\t* Entry number (if applicable)\n\t* Date of the form\n\t* Name and title of the person submitting the form\n3. Itemize the accompanying and subsequent entry articles: List each item being imported in the table provided on the form. Include the following information for each item:\n\t* Description of the article\n\t* Harmonized Tariff Schedule (HTS) number\n\t* Quantity (number and unit of measure)\n\t* Value (including any applicable duties, taxes, and fees)\n4. Provide additional information: In the \"Remarks\" section, you can provide any additional information or comments about the shipment or its contents.\n5. Sign and date the form: The person submitting the form must sign and date it, certifying that the information provided is true and accurate to the best of their knowledge.\n6. Submit the form: Submit the completed Form 28 to your local CBP office or as directed by your customs broker.\n\nPlease note that the specific requirements for Form 28 may vary depending on the nature of the shipment and the applicable regulations. Always consult with a customs broker or legal advisor to ensure compliance with CBP requirements."
+      },
+      {
+        "role": "user",
+        "content": "한국말로 설명 더 해줄래?"
+      },
+      {
+        "role": "assistant",
+        "content": "물론이죠! 대한민국 관세청(Korea Customs Service, KCS)은 국제 무역 거래를 관리하고 관세 및 규제 준수를 감독하는 기관입니다. 한국 관세청은 다음과 같은 업무를 수행합니다:\n\n1. 수입 및 수출 신고 관리: 한국 관세청은 수입 및 수출 신고를 처리하고, 필요한 관세 및 세금을 징수합니다.\n2. 관세 및 무역 규정 집행: 한국 관세청은 관세법 및 기타 무역 관련 법률을 집행하여 불법 무역 활동을 방지하고 공정 무역을 촉진합니다.\n3. 원산지 증명서 발급: 한국 관세청은 자유무역협정(FTA) 혜택을 받기 위해 필요한 원산지 증명서를 발급합니다.\n4. 무역 데이터 수집 및 분석: 한국 관세청은 무역 데이터를 수집하고 분석하여 경제 정책 수립 및 무역 협상 지원에 활용합니다.\n5. 관세 행정 현대화: 한국 관세청은 전자통관 시스템(UNI-PASS)을 도입하여 관세 행정 절차를 간소화하고, 무역 원활화를 도모합니다.\n\n한국 관세청은 국제 무역에서 중요한 역할을 하며, 무역업체들은 관세청 규정을 준수하고 원활한 통관을 위해 관세청과 협력해야 합니다."
+      }
+    ],
+    "title": "Incoterms Explained",
+    "timestamp": "20250403_210820"
+  }
+}

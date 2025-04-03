@@ -5,17 +5,17 @@ from langchain_upstage import ChatUpstage
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 import os
 import json
-import asyncio
 
 app = FastAPI()
 
-# UPSTAGE API 설정
 os.environ["UPSTAGE_API_KEY"] = "up_LYEjt0aGQV2SPaH22Mos5CqAzbikF"
 chat = ChatUpstage(api_key=os.environ["UPSTAGE_API_KEY"], model="solar-pro")
 
-# 무역 관련 메모리 데이터 로드
-with open("memory.json", "r", encoding="utf-8") as f:
-    memory_data = json.load(f)
+base_path = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(base_path, "base_knowledge_memory.json")
+
+with open(file_path, "r", encoding="utf-8") as f:
+    base_memory = json.load(f)
 
 class ChatMessage(BaseModel):
     role: str
@@ -28,28 +28,26 @@ class ChatResponse(BaseModel):
     response: str
 
 async def get_trade_response(messages: List[ChatMessage]) -> str:
-    # LangChain 메시지 형식으로 변환
     langchain_messages = [
-        SystemMessage(content=f"""You are a specialized Trade and Customs Assistant. 
+        SystemMessage(content=f"""
+        You are a specialized Trade and Customs Assistant. 
         You have expertise in international trade procedures, HS codes,
         customs documentation, and regulations.
         
         Use the following trade knowledge base for accurate responses:
-        {json.dumps(memory_data, ensure_ascii=False)}
+        {json.dumps(base_memory, ensure_ascii=False)}
         
-        Always provide accurate and helpful information about these topics.""")
+        Always provide accurate and helpful information about these topics, base on the user's message language""")
     ]
-    
-    # 사용자 메시지 추가
+
     for msg in messages:
         if msg.role == "user":
             langchain_messages.append(HumanMessage(content=msg.content))
         elif msg.role == "assistant":
             langchain_messages.append(AIMessage(content=msg.content))
     
-    # UPSTAGE 모델로 응답 생성
     response = await chat.ainvoke(langchain_messages)
-    
+
     return response.content
 
 @app.post("/chat", response_model=ChatResponse)
@@ -62,4 +60,4 @@ async def chat_endpoint(request: ChatRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000) 
+    uvicorn.run(app, host="0.0.0.0", port=8000)

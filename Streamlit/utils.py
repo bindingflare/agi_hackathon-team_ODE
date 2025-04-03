@@ -1,84 +1,67 @@
 import json
 import os
-from datetime import datetime
 import tempfile
+from datetime import datetime
 from openai import OpenAI
 
 # OpenAI 클라이언트 초기화
 client = OpenAI(api_key="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")
 
 def get_conversation_file_path(conversation_type: str):
-    """대화 유형별 파일 경로를 반환합니다."""
+    """
+    대화 유형별 파일 경로를 반환합니다.
+    Supported conversation_type:
+      - "sidebar_chat": chat_history.json
+      - "document_processing": document_memory.json
+      - "pdf_validation": form_memory.json
+      그 외에는 conversation_memory.json
+    """
     current_dir = os.path.dirname(os.path.abspath(__file__))
     file_names = {
-        "sidebar_chat": "trade_chat_memory.json",
+        "sidebar_chat": "chat_history.json",
         "document_processing": "document_memory.json",
         "pdf_validation": "form_memory.json"
     }
     return os.path.join(current_dir, file_names.get(conversation_type, "conversation_memory.json"))
 
-def save_conversation(conversation_type: str, messages: list):
+def save_conversation(conversation_type: str, chat_data: dict):
     """
-    대화 내용을 각 도우미별 파일에 저장합니다.
-    
-    Args:
-        conversation_type (str): 대화 유형 ('sidebar_chat', 'document_processing', 'pdf_validation')
-        messages (list): 대화 메시지 목록
+    대화 내용을 딕셔너리 형태로 저장합니다.
+    예시:
+    {
+        "chat_20250403_210703": {
+            "id": "chat_20250403_210703",
+            "messages": [...],
+            "title": "Incoterms Explained",
+            "timestamp": "20250403_210820"
+        }
+    }
     """
     try:
         file_path = get_conversation_file_path(conversation_type)
         
-        # 파일이 존재하면 읽기, 없으면 빈 딕셔너리 생성
-        memory = {"conversations": []}
+        # 기존 데이터를 딕셔너리로 로드 (없으면 빈 딕셔너리)
         if os.path.exists(file_path):
             try:
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    try:
-                        memory = json.load(f)
-                        if not isinstance(memory, dict) or "conversations" not in memory:
-                            print(f"파일 형식이 올바르지 않습니다. 초기화합니다: {file_path}")
-                            memory = {"conversations": []}
-                    except json.JSONDecodeError:
-                        print(f"JSON 파싱 오류가 발생했습니다. 파일을 초기화합니다: {file_path}")
-                        memory = {"conversations": []}
+                with open(file_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                if not isinstance(data, dict):
+                    data = {}
             except Exception as e:
-                print(f"파일을 읽는 중 오류가 발생했습니다: {str(e)}")
-                print(f"새로 시작합니다: {file_path}")
-                memory = {"conversations": []}
-
-        # 현재 시간을 키로 사용
-        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                print(f"Error loading existing conversation data: {str(e)}")
+                data = {}
+        else:
+            data = {}
         
-        # 대화 내용에 시간 정보 추가
-        conversation_data = {
-            "timestamp": current_time,
-            "messages": messages
-        }
+        # 현재 대화 데이터를 갱신합니다.
+        data[chat_data["id"]] = chat_data
         
-        # 대화 내용 추가
-        memory["conversations"].append(conversation_data)
-        
-        # 시간순으로 정렬
-        memory["conversations"].sort(key=lambda x: x["timestamp"])
-
-        # 임시 파일에 먼저 저장
+        # 임시 파일에 저장 후 원본 파일로 이동하여 데이터 손상 방지
         temp_fd, temp_path = tempfile.mkstemp(dir=os.path.dirname(file_path), suffix='.json')
-        try:
-            with os.fdopen(temp_fd, 'w', encoding='utf-8') as f:
-                json.dump(memory, f, ensure_ascii=False, indent=2)
-            
-            # 임시 파일을 실제 파일로 이동
-            if os.path.exists(file_path):
-                os.replace(temp_path, file_path)
-            else:
-                os.rename(temp_path, file_path)
-                
-            print(f"대화가 저장되었습니다: {file_path}")
-            
-        except Exception as e:
-            os.unlink(temp_path)
-            raise e
-            
+        with os.fdopen(temp_fd, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        os.replace(temp_path, file_path)
+        print(f"대화가 저장되었습니다: {file_path}")
     except Exception as e:
         print(f"대화 저장 중 오류 발생: {str(e)}")
 
@@ -87,14 +70,13 @@ def load_conversations(conversation_type: str = None):
     저장된 대화 내용을 불러옵니다.
     
     Args:
-        conversation_type (str, optional): 특정 대화 유형만 불러올 경우 지정
-        
+        conversation_type (str, optional): 특정 대화 유형을 지정할 경우 해당 파일에서 불러옵니다.
+    
     Returns:
-        dict: 저장된 대화 내용
+        list: 저장된 대화 목록 (conversations 키 아래의 리스트)
     """
     try:
         file_path = get_conversation_file_path(conversation_type)
-        
         if os.path.exists(file_path):
             with open(file_path, 'r', encoding='utf-8') as f:
                 memory = json.load(f)
@@ -104,45 +86,46 @@ def load_conversations(conversation_type: str = None):
         print(f"대화 불러오기 중 오류 발생: {str(e)}")
         return []
 
-def perform_web_search(query):
-    """웹 검색을 수행하고 결과를 저장합니다."""
+def perform_web_search(query: str):
+    """
+    웹 검색을 수행하고, 결과를 저장 후 반환합니다.
+    
+    Args:
+        query (str): 검색할 질의 내용
+    
+    Returns:
+        str or None: 웹 검색 결과 요약 (실패 시 None)
+    """
     try:
-        # 웹 검색을 위한 프롬프트 생성
-        search_prompt = f"""Please search the web for information about: {query}
-        Provide a comprehensive summary of the findings, including:
-        1. Key facts and details
-        2. Relevant sources
-        3. Any important context or background
-        Format the response in a clear, structured way."""
-        
-        response = client.chat.completions.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": "You are a helpful web search assistant. Provide accurate and relevant information from the web."},
-                {"role": "user", "content": search_prompt}
-            ]
+        print("Web searching using GPT-4 search tool")
+        response = client.responses.create(
+            model="gpt-4o",
+            tools=[{"type": "web_search_preview"}],
+            input=query
         )
-        
-        search_result = response.choices[0].message.content
-        
-        # 검색 결과 저장
+        search_result = response.output_text
         save_search_result(query, search_result)
-        
         return search_result
     except Exception as e:
         print(f"Error performing web search: {str(e)}")
         return None
 
-def enhance_prompt_with_web_search(prompt, web_search_enabled=False):
-    """프롬프트에 웹 검색 결과를 통합합니다."""
+def enhance_prompt_with_web_search(prompt: str, web_search_enabled: bool = False) -> str:
+    """
+    프롬프트에 웹 검색 결과를 통합합니다.
+    
+    Args:
+        prompt (str): 원래 프롬프트
+        web_search_enabled (bool): 웹 검색 사용 여부
+    
+    Returns:
+        str: 웹 검색 결과가 통합된 프롬프트 (웹 검색이 비활성화면 원본 프롬프트 반환)
+    """
     if not web_search_enabled:
         return prompt
-        
     try:
-        # 웹 검색 수행
         search_result = perform_web_search(prompt)
         if search_result:
-            # 검색 결과를 프롬프트에 통합
             enhanced_prompt = f"""Based on the following web search results:
 
 {search_result}
@@ -153,19 +136,24 @@ Make sure to incorporate relevant information from the web search results while 
             return enhanced_prompt
     except Exception as e:
         print(f"Error enhancing prompt with web search: {str(e)}")
-    
     return prompt
 
-def save_search_result(query, result):
-    """검색 결과를 저장합니다."""
+def save_search_result(query: str, result: str):
+    """
+    검색 결과를 저장합니다.
+    
+    Args:
+        query (str): 검색 질의
+        result (str): 검색 결과 요약
+    """
     try:
-        chat_history_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chat_history")
+        chat_history_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../Chatbot/chat_history")
         if not os.path.exists(chat_history_dir):
             os.makedirs(chat_history_dir)
         
         search_file = os.path.join(chat_history_dir, "search_history.json")
         
-        # 기존 검색 기록 로드
+        # 기존 검색 기록 로드 (없으면 빈 딕셔너리)
         search_history = {}
         if os.path.exists(search_file):
             try:
@@ -175,17 +163,14 @@ def save_search_result(query, result):
                 print(f"Error loading search history: {str(e)}")
                 search_history = {}
         
-        # 새로운 검색 결과 추가
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         search_id = f"search_{timestamp}"
-        
         search_history[search_id] = {
             "query": query,
             "result": result,
             "timestamp": timestamp
         }
         
-        # 저장
         with open(search_file, "w", encoding="utf-8") as f:
             json.dump(search_history, f, ensure_ascii=False, indent=2)
         print(f"Successfully saved search result to: {search_file}")
@@ -193,14 +178,17 @@ def save_search_result(query, result):
         print(f"Error saving search result: {str(e)}")
 
 def load_search_history():
-    """저장된 검색 기록을 불러옵니다."""
+    """
+    저장된 검색 기록을 불러옵니다.
+    
+    Returns:
+        dict: 검색 기록 (검색 ID를 키로 하는 딕셔너리)
+    """
     try:
-        chat_history_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chat_history")
+        chat_history_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../Chatbot/chat_history")
         search_file = os.path.join(chat_history_dir, "search_history.json")
-        
         if not os.path.exists(search_file):
             return {}
-        
         with open(search_file, "r", encoding="utf-8") as f:
             history = json.load(f)
             return history
@@ -209,17 +197,20 @@ def load_search_history():
         return {}
 
 def load_user_info():
-    """저장된 사용자 정보를 불러옵니다."""
+    """
+    저장된 사용자 정보를 불러옵니다.
+    
+    Returns:
+        dict or None: 사용자 정보 (없으면 None)
+    """
     try:
-        chat_history_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chat_history")
+        chat_history_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../Chatbot/chat_history")
         user_info_file = os.path.join(chat_history_dir, "user_information.json")
-        
         if not os.path.exists(user_info_file):
             return None
-        
         with open(user_info_file, "r", encoding="utf-8") as f:
             data = json.load(f)
             return data.get("user_information")
     except Exception as e:
         print(f"Error loading user information: {str(e)}")
-        return None 
+        return None

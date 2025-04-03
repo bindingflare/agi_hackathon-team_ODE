@@ -1,0 +1,548 @@
+{
+    "api": "2.0",
+    "content": {
+        "html": "<header id='0' style='font-size:14px'>Hazard Analysis Critical Control Point (HACCP) I FDA</header>\n<br><header id='1' style='font-size:14px'>2025. 4. 1. 오후 1:44</header>\n<h1 id='2' style='font-size:22px'>Hazard Analysis Critical Control Point (HACCP)</h1>\n<p id='3' data-category='paragraph' style='font-size:18px'>HACCP is a management system in which food safety is addressed through the analysis and control<br>of biological, chemical, and physical hazards from raw material production, procurement and handling,<br>to manufacturing, distribution and consumption of the finished product.</p>\n<p id='4' data-category='paragraph' style='font-size:20px'>HACCP Principles & Application Guidelines (/ood/hazard-analysis-critical-controind-poin-<br>happ.haapop-principles-application-quides/</p>\n<p id='5' data-category='paragraph' style='font-size:20px'>Dairy Grade A Voluntary HACCP (Nophinasaosamals.echica-commulpintracquopade<br>voluntary-haccp)</p>\n<p id='6' data-category='paragraph' style='font-size:20px'>· Including Questions and AnswersAbout NCIMS Dairy HACCP (http://wayback.archive-<br>iny364011888ftwww.buoldifacigristhk/RuNG & BAth<br>V (http://www.govatu.uk/bateletexpites/uss/dainal)</p>\n<p id='7' data-category='paragraph' style='font-size:20px'>Juice HACCP /lock/hazankanai,secofica-cortopini/expite-taog)</p>\n<p id='8' data-category='list' style='font-size:18px'>· Including Juice HACCP Hazardsand Controls Guidance-First Edition (/food/guidance-<br>dounco quarymintpfoutplemensigite-packsancentanca<br>guidance-first-edition) and Questions&Answers for the Juice HACCP Regulation<br>shoupdanecom/rank<br>answers-juice-haccp-regulation-2003)</p>\n<p id='9' data-category='list' style='font-size:18px'>· Guidance for Industry: Juice HACCP and the FDA Food Safety Modernization Act<br>hotplatarbonatveguoyitinarty/uarehdayuendenche<br>food-safety-modernization-act)</p>\n<p id='10' data-category='paragraph' style='font-size:18px'>Retail and Food Service HACCP (tood/hazankkoaalysecofica.com/portracopratoot-<br>service-haccp)</p>\n<p id='11' data-category='paragraph' style='font-size:20px'>Seafood HACCP /foom/hasokanalge-fica.comity-pin-accokastogi</p>\n<p id='12' data-category='list' style='font-size:18px'>· Including Fish and FisheryProducts Hazards and Controls Guidance (/food/seafood/fish-and-<br>(sheanyouobude-azacksaikcontologucane-buthe-outh) and FDA's Evaluation of the<br>Seafood HACCP Program 2004/2005 (http://wayback.archive-<br>[u/9640002188lip/w.tp/Ro2.comeguort4021m139tm<br>Gytp://www.to.co.kruckawasseapiesmeswedatedsmamaj<br>· Guidancefor Industry:Seafood HACCP and the FDA Food Safety ModernizationAct<br>vidovanecounawey,thyinnativodovsnatextextexbok<br>fda-food-safety-modernization-act)</p>\n<footer id='13' style='font-size:16px'>httpw.p.jotylicep.intervervolw.gasestewit/vidowd</footer>\n<br><footer id='14' style='font-size:16px'>1페이지/2페이지</footer>\n<header id='15' style='font-size:16px'>Hazard Analysis Critical Control Point (HACCP) I FDA</header>\n<br><header id='16' style='font-size:14px'>2025. 4. 1. 오후 1:44</header>\n<footer id='17' style='font-size:20px'>httpw.wojity.iteg.ic/casvan.com/ressatextav.do.kw</footer>\n<br><footer id='18' style='font-size:20px'>2페이지/2페이지</footer>",
+        "markdown": "",
+        "text": ""
+    },
+    "elements": [
+        {
+            "category": "header",
+            "content": {
+                "html": "<header id='0' style='font-size:14px'>Hazard Analysis Critical Control Point (HACCP) I FDA</header>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.0265,
+                    "y": 0.0198
+                },
+                {
+                    "x": 0.3439,
+                    "y": 0.0198
+                },
+                {
+                    "x": 0.3439,
+                    "y": 0.0321
+                },
+                {
+                    "x": 0.0265,
+                    "y": 0.0321
+                }
+            ],
+            "id": 0,
+            "page": 1
+        },
+        {
+            "category": "header",
+            "content": {
+                "html": "<br><header id='1' style='font-size:14px'>2025. 4. 1. 오후 1:44</header>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.8502,
+                    "y": 0.0196
+                },
+                {
+                    "x": 0.9722,
+                    "y": 0.0196
+                },
+                {
+                    "x": 0.9722,
+                    "y": 0.0315
+                },
+                {
+                    "x": 0.8502,
+                    "y": 0.0315
+                }
+            ],
+            "id": 1,
+            "page": 1
+        },
+        {
+            "category": "heading1",
+            "content": {
+                "html": "<h1 id='2' style='font-size:22px'>Hazard Analysis Critical Control Point (HACCP)</h1>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.1545,
+                    "y": 0.0864
+                },
+                {
+                    "x": 0.8443,
+                    "y": 0.0864
+                },
+                {
+                    "x": 0.8443,
+                    "y": 0.1125
+                },
+                {
+                    "x": 0.1545,
+                    "y": 0.1125
+                }
+            ],
+            "id": 2,
+            "page": 1
+        },
+        {
+            "category": "paragraph",
+            "content": {
+                "html": "<p id='3' data-category='paragraph' style='font-size:18px'>HACCP is a management system in which food safety is addressed through the analysis and control<br>of biological, chemical, and physical hazards from raw material production, procurement and handling,<br>to manufacturing, distribution and consumption of the finished product.</p>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.0609,
+                    "y": 0.1391
+                },
+                {
+                    "x": 0.9383,
+                    "y": 0.1391
+                },
+                {
+                    "x": 0.9383,
+                    "y": 0.1994
+                },
+                {
+                    "x": 0.0609,
+                    "y": 0.1994
+                }
+            ],
+            "id": 3,
+            "page": 1
+        },
+        {
+            "category": "paragraph",
+            "content": {
+                "html": "<p id='4' data-category='paragraph' style='font-size:20px'>HACCP Principles & Application Guidelines (/ood/hazard-analysis-critical-controind-poin-<br>happ.haapop-principles-application-quides/</p>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.0617,
+                    "y": 0.2159
+                },
+                {
+                    "x": 0.8396,
+                    "y": 0.2159
+                },
+                {
+                    "x": 0.8396,
+                    "y": 0.2557
+                },
+                {
+                    "x": 0.0617,
+                    "y": 0.2557
+                }
+            ],
+            "id": 4,
+            "page": 1
+        },
+        {
+            "category": "paragraph",
+            "content": {
+                "html": "<p id='5' data-category='paragraph' style='font-size:20px'>Dairy Grade A Voluntary HACCP (Nophinasaosamals.echica-commulpintracquopade<br>voluntary-haccp)</p>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.0614,
+                    "y": 0.2715
+                },
+                {
+                    "x": 0.8969,
+                    "y": 0.2715
+                },
+                {
+                    "x": 0.8969,
+                    "y": 0.3115
+                },
+                {
+                    "x": 0.0614,
+                    "y": 0.3115
+                }
+            ],
+            "id": 5,
+            "page": 1
+        },
+        {
+            "category": "paragraph",
+            "content": {
+                "html": "<p id='6' data-category='paragraph' style='font-size:20px'>· Including Questions and AnswersAbout NCIMS Dairy HACCP (http://wayback.archive-<br>iny364011888ftwww.buoldifacigristhk/RuNG & BAth<br>V (http://www.govatu.uk/bateletexpites/uss/dainal)</p>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.0892,
+                    "y": 0.3274
+                },
+                {
+                    "x": 0.9702,
+                    "y": 0.3274
+                },
+                {
+                    "x": 0.9702,
+                    "y": 0.3896
+                },
+                {
+                    "x": 0.0892,
+                    "y": 0.3896
+                }
+            ],
+            "id": 6,
+            "page": 1
+        },
+        {
+            "category": "paragraph",
+            "content": {
+                "html": "<p id='7' data-category='paragraph' style='font-size:20px'>Juice HACCP /lock/hazankanai,secofica-cortopini/expite-taog)</p>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.0628,
+                    "y": 0.4055
+                },
+                {
+                    "x": 0.7261,
+                    "y": 0.4055
+                },
+                {
+                    "x": 0.7261,
+                    "y": 0.4247
+                },
+                {
+                    "x": 0.0628,
+                    "y": 0.4247
+                }
+            ],
+            "id": 7,
+            "page": 1
+        },
+        {
+            "category": "list",
+            "content": {
+                "html": "<p id='8' data-category='list' style='font-size:18px'>· Including Juice HACCP Hazardsand Controls Guidance-First Edition (/food/guidance-<br>dounco quarymintpfoutplemensigite-packsancentanca<br>guidance-first-edition) and Questions&Answers for the Juice HACCP Regulation<br>shoupdanecom/rank<br>answers-juice-haccp-regulation-2003)</p>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.0886,
+                    "y": 0.4407
+                },
+                {
+                    "x": 0.9044,
+                    "y": 0.4407
+                },
+                {
+                    "x": 0.9044,
+                    "y": 0.5438
+                },
+                {
+                    "x": 0.0886,
+                    "y": 0.5438
+                }
+            ],
+            "id": 8,
+            "page": 1
+        },
+        {
+            "category": "list",
+            "content": {
+                "html": "<p id='9' data-category='list' style='font-size:18px'>· Guidance for Industry: Juice HACCP and the FDA Food Safety Modernization Act<br>hotplatarbonatveguoyitinarty/uarehdayuendenche<br>food-safety-modernization-act)</p>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.0897,
+                    "y": 0.5552
+                },
+                {
+                    "x": 0.9272,
+                    "y": 0.5552
+                },
+                {
+                    "x": 0.9272,
+                    "y": 0.616
+                },
+                {
+                    "x": 0.0897,
+                    "y": 0.616
+                }
+            ],
+            "id": 9,
+            "page": 1
+        },
+        {
+            "category": "paragraph",
+            "content": {
+                "html": "<p id='10' data-category='paragraph' style='font-size:18px'>Retail and Food Service HACCP (tood/hazankkoaalysecofica.com/portracopratoot-<br>service-haccp)</p>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.0614,
+                    "y": 0.6319
+                },
+                {
+                    "x": 0.8838,
+                    "y": 0.6319
+                },
+                {
+                    "x": 0.8838,
+                    "y": 0.6711
+                },
+                {
+                    "x": 0.0614,
+                    "y": 0.6711
+                }
+            ],
+            "id": 10,
+            "page": 1
+        },
+        {
+            "category": "paragraph",
+            "content": {
+                "html": "<p id='11' data-category='paragraph' style='font-size:20px'>Seafood HACCP /foom/hasokanalge-fica.comity-pin-accokastogi</p>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.0626,
+                    "y": 0.6877
+                },
+                {
+                    "x": 0.7815,
+                    "y": 0.6877
+                },
+                {
+                    "x": 0.7815,
+                    "y": 0.7063
+                },
+                {
+                    "x": 0.0626,
+                    "y": 0.7063
+                }
+            ],
+            "id": 11,
+            "page": 1
+        },
+        {
+            "category": "list",
+            "content": {
+                "html": "<p id='12' data-category='list' style='font-size:18px'>· Including Fish and FisheryProducts Hazards and Controls Guidance (/food/seafood/fish-and-<br>(sheanyouobude-azacksaikcontologucane-buthe-outh) and FDA's Evaluation of the<br>Seafood HACCP Program 2004/2005 (http://wayback.archive-<br>[u/9640002188lip/w.tp/Ro2.comeguort4021m139tm<br>Gytp://www.to.co.kruckawasseapiesmeswedatedsmamaj<br>· Guidancefor Industry:Seafood HACCP and the FDA Food Safety ModernizationAct<br>vidovanecounawey,thyinnativodovsnatextextexbok<br>fda-food-safety-modernization-act)</p>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.0869,
+                    "y": 0.7213
+                },
+                {
+                    "x": 0.969,
+                    "y": 0.7213
+                },
+                {
+                    "x": 0.969,
+                    "y": 0.8974
+                },
+                {
+                    "x": 0.0869,
+                    "y": 0.8974
+                }
+            ],
+            "id": 12,
+            "page": 1
+        },
+        {
+            "category": "footer",
+            "content": {
+                "html": "<footer id='13' style='font-size:16px'>httpw.p.jotylicep.intervervolw.gasestewit/vidowd</footer>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.0255,
+                    "y": 0.9385
+                },
+                {
+                    "x": 0.7606,
+                    "y": 0.9385
+                },
+                {
+                    "x": 0.7606,
+                    "y": 0.9517
+                },
+                {
+                    "x": 0.0255,
+                    "y": 0.9517
+                }
+            ],
+            "id": 13,
+            "page": 1
+        },
+        {
+            "category": "footer",
+            "content": {
+                "html": "<br><footer id='14' style='font-size:16px'>1페이지/2페이지</footer>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.8872,
+                    "y": 0.9385
+                },
+                {
+                    "x": 0.9729,
+                    "y": 0.9385
+                },
+                {
+                    "x": 0.9729,
+                    "y": 0.9505
+                },
+                {
+                    "x": 0.8872,
+                    "y": 0.9505
+                }
+            ],
+            "id": 14,
+            "page": 1
+        },
+        {
+            "category": "header",
+            "content": {
+                "html": "<header id='15' style='font-size:16px'>Hazard Analysis Critical Control Point (HACCP) I FDA</header>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.0262,
+                    "y": 0.0198
+                },
+                {
+                    "x": 0.344,
+                    "y": 0.0198
+                },
+                {
+                    "x": 0.344,
+                    "y": 0.0321
+                },
+                {
+                    "x": 0.0262,
+                    "y": 0.0321
+                }
+            ],
+            "id": 15,
+            "page": 2
+        },
+        {
+            "category": "header",
+            "content": {
+                "html": "<br><header id='16' style='font-size:14px'>2025. 4. 1. 오후 1:44</header>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.8498,
+                    "y": 0.0196
+                },
+                {
+                    "x": 0.9725,
+                    "y": 0.0196
+                },
+                {
+                    "x": 0.9725,
+                    "y": 0.0316
+                },
+                {
+                    "x": 0.8498,
+                    "y": 0.0316
+                }
+            ],
+            "id": 16,
+            "page": 2
+        },
+        {
+            "category": "footer",
+            "content": {
+                "html": "<footer id='17' style='font-size:20px'>httpw.wojity.iteg.ic/casvan.com/ressatextav.do.kw</footer>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.025,
+                    "y": 0.9387
+                },
+                {
+                    "x": 0.7605,
+                    "y": 0.9387
+                },
+                {
+                    "x": 0.7605,
+                    "y": 0.9514
+                },
+                {
+                    "x": 0.025,
+                    "y": 0.9514
+                }
+            ],
+            "id": 17,
+            "page": 2
+        },
+        {
+            "category": "footer",
+            "content": {
+                "html": "<br><footer id='18' style='font-size:20px'>2페이지/2페이지</footer>",
+                "markdown": "",
+                "text": ""
+            },
+            "coordinates": [
+                {
+                    "x": 0.8853,
+                    "y": 0.9384
+                },
+                {
+                    "x": 0.9728,
+                    "y": 0.9384
+                },
+                {
+                    "x": 0.9728,
+                    "y": 0.9506
+                },
+                {
+                    "x": 0.8853,
+                    "y": 0.9506
+                }
+            ],
+            "id": 18,
+            "page": 2
+        }
+    ],
+    "merged_elements": [],
+    "model": "document-parse-250116",
+    "ocr": true,
+    "usage": {
+        "pages": 2
+    }
+}

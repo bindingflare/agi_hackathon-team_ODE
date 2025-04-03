@@ -2,3 +2,4 @@ streamlit
 langchain
 langchain-upstage
 requests
+pymupdf

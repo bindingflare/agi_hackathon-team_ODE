@@ -27,7 +27,7 @@ services:
     depends_on:
       fastapi-app:
         condition: service_healthy
-      uvicorn-app:
+      pdfvalidator-app:
         condition: service_healthy
     networks:
       - app-network
@@ -68,10 +68,10 @@ services:
         max-size: "10m"
         max-file: "3"
   
-  uvicorn-app:
+  pdfvalidator-app:
     build:
       context: ./PDFValidator
-    container_name: uvicorn-app
+    container_name: pdfvalidator-app
     ports:
       - "8001:8001"
     volumes:

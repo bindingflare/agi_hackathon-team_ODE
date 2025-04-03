@@ -20,12 +20,17 @@ from utils import (
 )
 import itertools
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
+
+UPSTAGE_API_KEY = os.getenv("UPSTAGE_API_KEY")
 
 # Document processing function
 def process_document_with_upstage(file_bytes):
     url = "https://api.upstage.ai/v1/document-digitization"
     headers = {
-        "Authorization": f"Bearer {upstage_api_key}"
+        "Authorization": f"Bearer {UPSTAGE_API_KEY}"
     }
     files = {
         "document": ("document.pdf", file_bytes, "application/pdf")

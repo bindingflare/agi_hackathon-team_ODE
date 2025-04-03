@@ -7,6 +7,8 @@ from datetime import datetime
 from openai import OpenAI
 from langchain_upstage import ChatUpstage
 from langchain_core.messages import HumanMessage
+from dotenv import load_dotenv
+load_dotenv()
 
 # -------------------- 설정 및 준비된 데이터 --------------------
 app = FastAPI()

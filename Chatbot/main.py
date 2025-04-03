@@ -6,6 +6,7 @@ from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from langchain_community.vectorstores import FAISS
 import os
 import json
+from dotenv import load_dotenv
 
 app = FastAPI()
 
@@ -13,6 +14,8 @@ app = FastAPI()
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
+
+load_dotenv()
 
 # Upstage API 키 설정
 UPSTAGE_API_KEY = os.getenv("UPSTAGE_API_KEY")  # chat용

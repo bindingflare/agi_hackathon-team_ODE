@@ -1,12 +1,10 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
-import os, json, tempfile
+import os, json, tempfile, base64
 import pandas as pd
 import base64
 from datetime import datetime
 from openai import OpenAI
-
-# langchain_upstage로 기준값 비교(메모리)와 주의사항 요약을 진행하기 위한 ChatUpstage 관련
 from langchain_upstage import ChatUpstage
 from langchain_core.messages import HumanMessage
 
@@ -14,6 +12,9 @@ from langchain_core.messages import HumanMessage
 app = FastAPI()
 os.environ["UPSTAGE_API_KEY"] = "up_Qjm6V61Ff8WFaxb1XOYG84WNSz4Mn"
 chat = ChatUpstage(api_key=os.environ["UPSTAGE_API_KEY"], model="solar-pro")
+base_dir = os.path.dirname(os.path.abspath(__file__))
+memory_path = os.path.join(base_dir, "memory.json")
+
 
 # 메모리(기준값) 데이터
 with open("memory.json", "r", encoding="utf-8") as f:
@@ -77,7 +78,7 @@ def chunked_summarize_csv(title: str, csv_text: str, chat_obj: ChatUpstage, max_
 {chunk_text}
 
 해당 부분에 포함된 주요 성분/이슈를 바탕으로, 수출입 업무시 주의해야 할 사항을 요약해 주세요.
-함량 제한 등 구체적인 성분과 같은 정보를 바탕으로 작성하세요. 포괄적이거나 일반적인 사실보다 구체적인 주어진 정보에 집중하세요.
+함량 제한 등 구체적인 정보와 명확한 수치를 바탕으로 미국 기준으로 작성하세요. 
         """
         summary_result = chat_obj.invoke([HumanMessage(content=prompt_summary)])
         partial_summaries.append(summary_result.content.strip())
@@ -94,6 +95,7 @@ def chunked_summarize_csv(title: str, csv_text: str, chat_obj: ChatUpstage, max_
 {combined_text}
 
 위 내용을 종합하여, {title}와 관련된 최종 주의사항을 간략히 정리해 주세요.
+단, 요약과정에서 수치나 구체적인 내용을 생략하거나 빠뜨리면 안됩니다.
 """
     final_summary = chat_obj.invoke([HumanMessage(content=final_prompt)])
 
@@ -157,7 +159,7 @@ async def check_pdf(file: UploadFile = File(...)):
 
         # extraction_response.choices[0].message.content가 실제 추출한 문자열
         extracted_str = extraction_response.choices[0].message.content
-        print(f"[DEBUG] extraction_response: {extracted_str}")
+        # print(f"[DEBUG] extraction_response: {extracted_str}")
 
         # ---------------------------------------------------------------
         # [2] 중간 챗봇 단계 - extracted_str에서 'keywords', 'parsed_text' 등 추출
@@ -174,7 +176,7 @@ async def check_pdf(file: UploadFile = File(...)):
 
         mid_chat_result = chat.invoke([HumanMessage(content=middle_prompt)])
         # mid_chat_result.content는 ChatUpstage가 만들어 준 JSON 문자열일 것
-        print(f"[DEBUG] mid_chat_result: {mid_chat_result.content}")
+        # print(f"[DEBUG] mid_chat_result: {mid_chat_result.content}")
 
         # 실제 JSON 파싱 (실패 시 fallback)
         try:
@@ -214,7 +216,8 @@ async def check_pdf(file: UploadFile = File(...)):
                 return f"- {title}: 관련 정보 없음"
             else:
                 # CSV 문자열 생성
-                csv_text = df_match.to_csv(index=False)
+                csv_text = df_match.drop(columns=["combined_text"]).to_csv(index=False)
+
                 # 청크 단위 요약 함수 사용
                 return chunked_summarize_csv(title, csv_text, chat)
 
@@ -227,20 +230,20 @@ async def check_pdf(file: UploadFile = File(...)):
         # ---------------------------------------------------------------
         # [5] 대화 이력 저장
         # ---------------------------------------------------------------
-        messages = [
-            {
-                "role": "user",
-                "content": f"PDF 파일 검증 요청: {file.filename}"
-            },
-            {
-                "role": "assistant",
-                "content": {
-                    "중간추출결과": parsed_json,  # 중간 단계 결과
-                    "불일치검사결과": compare_result.content,
-                    "성분및통관주의사항": caution_summary
-                }
-            }
-        ]
+        # messages = [
+        #     {
+        #         "role": "user",
+        #         "content": f"PDF 파일 검증 요청: {file.filename}"
+        #     },
+        #     {
+        #         "role": "assistant",
+        #         "content": {
+        #             "중간추출결과": parsed_json,  # 중간 단계 결과
+        #             "불일치검사결과": compare_result.content,
+        #             "성분및통관주의사항": caution_summary
+        #         }
+        #     }
+        # ]
 
         # try:
         #     file_path = get_conversation_file_path()
@@ -274,6 +277,50 @@ async def check_pdf(file: UploadFile = File(...)):
 
     finally:
         os.remove(tmp_path)
+
+
+@app.post("/upload-json")
+async def upload_json(file: UploadFile = File(...)):
+    if not file.filename.endswith(".json"):
+        raise HTTPException(status_code=400, detail="Only JSON files are allowed.")
+
+    try:
+        contents = await file.read()
+        data = json.loads(contents)
+        with open(memory_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        return {"message": "memory.json has been updated successfully."}
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=400, detail="Uploaded file is not valid JSON.")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
+
+
+# Health check endpoint
+@app.get("/health")
+async def health_check():
+    try:
+        # Check if required files exist
+        required_files = {
+            "memory.json": os.path.exists("memory.json"),
+            "harmful_substances_prepared.csv": os.path.exists("harmful_substances_prepared.csv"),
+            "food_additives_prepared.csv": os.path.exists("food_additives_prepared.csv")
+        }
+        
+        return {
+            "status": "healthy",
+            "timestamp": datetime.now().isoformat(),
+            "service": "pdf-validator",
+            "required_files": required_files,
+            "upstage_api_key_configured": bool(os.environ.get("UPSTAGE_API_KEY"))
+        }
+    except Exception as e:
+        return {
+            "status": "unhealthy",
+            "error": str(e),
+            "timestamp": datetime.now().isoformat()
+        }
+
 
 if __name__ == "__main__":
     import uvicorn

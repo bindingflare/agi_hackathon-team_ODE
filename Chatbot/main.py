@@ -1,4 +1,3 @@
-from dotenv import load_dotenv
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
@@ -10,14 +9,17 @@ import json
 
 app = FastAPI()
 
-load_dotenv()  # This will load variables from .env into os.environ
+# Health check endpoint
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
 
 # Upstage API 키 설정
-UPSTAGE_API_KEY = os.getenv("UPSTAGE_API_KEY") # chat용
-UPDATE_EMBEDDING_KEY = os.getenv("UPSTAGE_EMBEDDING_KEY") # embedding용
+os.environ["UPSTAGE_API_KEY"] = "up_LYEjt0aGQV2SPaH22Mos5CqAzbikF"  # chat용
+os.environ["UPSTAGE_EMBEDDING_KEY"] = "up_E1VgeiWjyyhBKjwtTh4mX47akMJ2t"  # embedding용
 
 # Upstage chat 모델
-chat = ChatUpstage(api_key=UPSTAGE_API_KEY, model="solar-pro")
+chat = ChatUpstage(api_key=os.environ["UPSTAGE_API_KEY"], model="solar-pro")
 
 # 벡터 DB 경로
 base_path = os.path.dirname(os.path.abspath(__file__))
@@ -25,7 +27,7 @@ vector_db_path = os.path.join(base_path, "vector_db", "Merged")
 
 # ✅ Upstage 임베딩 모델 사용
 embedding_model = UpstageEmbeddings(
-    api_key=UPDATE_EMBEDDING_KEY,
+    api_key=os.environ["UPSTAGE_EMBEDDING_KEY"],
     model="embedding-query"
 )
 

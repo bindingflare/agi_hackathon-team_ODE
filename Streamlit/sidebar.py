@@ -54,7 +54,7 @@ def generate_chat_title(messages):
             return "New Chat"
         first_message = user_messages[0]["content"]
         response = requests.post(
-            "http://localhost:8000/chat",
+            "http://fastapi-app:8000/chat",
             json={
                 "messages": [
                     {
@@ -91,7 +91,7 @@ def extract_user_info(messages):
                 {"role": "user", "content": f"Extract info from: {json.dumps(user_messages, ensure_ascii=False)}"}
             ]
         }
-        response = requests.post("http://localhost:8000/chat", json=info_prompt)
+        response = requests.post("http://fastapi-app:8000/chat", json=info_prompt)
         if response.status_code == 200:
             try:
                 info = json.loads(response.json()["response"])
@@ -150,6 +150,12 @@ def render_chat_interface():
         chat_ids = [chat["id"] for chat in chat_history]
         chat_titles = [chat.get("title", "New Chat") for chat in chat_history]
 
+        # If no chats exist, create a new one
+        if not chat_ids:
+            create_new_chat()
+            st.rerun()
+            return
+
         # Determine the current index of selected chat ID
         try:
             current_index = chat_ids.index(st.session_state.current_chat_id)
@@ -186,25 +192,33 @@ def render_chat_interface():
         if not st.session_state.show_chat:
             st.session_state.show_chat = True
             create_new_chat()
-
-        # Chat input box
         chat_input_box = st.empty()
+
         # Web Search checkbox
         st.session_state.web_search_enabled = st.checkbox("Web Search", key="chatbot_web_search_enabled")
 
         if prompt := chat_input_box.chat_input("Ask about trade & customs"):
             if st.session_state.web_search_enabled:
                 st.info("Web search is enabled. Your queries will include relevant web information.")
-                enhanced_prompt = enhance_prompt_with_web_search(prompt, web_search_enabled=True)
+                prompt, search_result, enhanced_prompt = enhance_prompt_with_web_search(prompt, web_search_enabled=True)
                 st.session_state.chat_messages.append({"role": "user", "content": enhanced_prompt})
             else:
                 st.info("Web search is disabled.")
+                search_result, enhanced_prompt = None, None
                 st.session_state.chat_messages.append({"role": "user", "content": prompt})
 
             try:
-                response = requests.post("http://localhost:8000/chat", json={"messages": st.session_state.chat_messages})
+                response = requests.post("http://fastapi-app:8000/chat", json={"messages": st.session_state.chat_messages})
                 if response.status_code == 200:
-                    bot_message = response.json()["response"]
+                    if search_result is not None:
+                        string = f"""**WEB SEARCH RESULT**\n
+{search_result}\n
+**CHATBOT RESPONSE BASED ON WEB SEARCH**\n
+"""
+                    else:
+                        string = ""
+
+                    bot_message = f'{string}{response.json()["response"]}'
                     st.session_state.chat_messages.append({"role": "assistant", "content": bot_message})
 
                     # Generate chat title if it's a new chat

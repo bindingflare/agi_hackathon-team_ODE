@@ -139,7 +139,7 @@ def init_chat_state():
     st.session_state.show_chat = st.session_state.get("show_chat", False)
     st.session_state.chat_messages = st.session_state.get("chat_messages", [])
     st.session_state.current_chat_id = st.session_state.get("current_chat_id", None)
-    st.session_state.chat_history = load_chat_history()
+    st.session_state.chat_history = st.session_state.get("chat_history", load_chat_history())
     st.session_state.web_search_enabled = st.session_state.get("web_search_enabled", False)
 
 def render_chat_button():

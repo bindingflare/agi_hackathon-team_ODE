@@ -5,3 +5,4 @@ langchain-core
 langchain-community
 faiss-cpu
 uvicorn
+python-dotenv

@@ -40,6 +40,14 @@
       {
         "role": "assistant",
         "content": "Sure! The Harmonized System (HS) is an international standardized nomenclature and code system used to classify traded products. It is maintained by the World Customs Organization (WCO). The HS code is composed of 6-digits as the basic code, with many countries adding 2-4 additional digits for further detail. For example, \"850650\" is the HS code for lithium-ion batteries, and \"870323\" is the HS code for a passenger car with a capacity of more than 1500cc but not exceeding 3000cc."
+      },
+      {
+        "role": "user",
+        "content": "fefe"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm here to help you with any questions related to international trade, customs, and HS codes. If you have any specific questions, please let me know."
       }
     ],
     "title": "Conversation Title: Greeting",

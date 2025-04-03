@@ -138,21 +138,44 @@ def render_chat_interface():
     if st.session_state.show_chat:
         with st.sidebar.container():
             st.header("📦Trade & Customs Assistant")
-            
+
+            if st.button("New Chat", key="new_chat_sidebar"):
+                create_new_chat()
+                st.rerun()
+                
     with st.sidebar.container():
         st.subheader("Chat History")
+        
+        chat_history = list(st.session_state.chat_history.values())
+        chat_ids = [chat["id"] for chat in chat_history]
+        chat_titles = [chat.get("title", "New Chat") for chat in chat_history]
 
-        # st.write("Chat History Debug:", st.session_state.chat_history)
+        # Determine the current index of selected chat ID
+        try:
+            current_index = chat_ids.index(st.session_state.current_chat_id)
+        except ValueError:
+            current_index = 0
+            st.session_state.current_chat_id = chat_ids[0]  # fallback
+            st.session_state.chat_messages = chat_history[0].get("messages", [])
 
-        chat_titles = [chat.get("title", "New Chat") for chat in st.session_state.chat_history.values()]
-        chat_ids = [chat["id"] for chat in st.session_state.chat_history.values()]
+        # Use index as selectbox value to avoid title ambiguity
+        selected_index = st.selectbox(
+            "Select Chat",
+            options=range(len(chat_titles)),
+            format_func=lambda i: chat_titles[i],
+            index=current_index,
+            key="chat_dropdown_index"  # prevents Streamlit rerun issues
+        )
 
-        selected_title = st.selectbox("Select Chat", chat_titles)
-        selected_chat = next(chat for chat in st.session_state.chat_history.values() if chat.get("title", "New Chat") == selected_title)
+        selected_chat = chat_history[selected_index]
+        selected_chat_id = selected_chat["id"]
 
-        st.session_state.current_chat_id = selected_chat["id"]
-        st.session_state.chat_messages = selected_chat.get("messages", [])
-
+        # Only update state if selection has changed to avoid flicker
+        if selected_chat_id != st.session_state.current_chat_id:
+            st.session_state.current_chat_id = selected_chat_id
+            st.session_state.chat_messages = selected_chat.get("messages", [])
+            st.rerun()  # rerun to refresh chat window cleanly`
+        
         if not st.session_state.chat_messages:
             st.info("Welcome! How can I assist you today?")
         else:
@@ -163,7 +186,6 @@ def render_chat_interface():
         if not st.session_state.show_chat:
             st.session_state.show_chat = True
             create_new_chat()
-
         chat_input_box = st.empty()
 
         # Web Search checkbox
@@ -208,16 +230,17 @@ def render_chat_interface():
                         if chat["id"] == st.session_state.current_chat_id:
                             chat["messages"] = st.session_state.chat_messages
                             from utils import save_conversation
-                            print(f"[DEBUG] Saving chat: {chat['id']}")
                             save_conversation("sidebar_chat", chat)
                             st.session_state.chat_history[key] = chat
                             break
                 else:
                     print("[DEBUG] No current_chat_id, skipping save_conversation")
 
+                st.rerun()
             except Exception as e:
                 error_message = f"Error: {str(e)}"
                 st.session_state.chat_messages.append({"role": "assistant", "content": error_message})
+                st.rerun()
 
 
 def main():

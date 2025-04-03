@@ -172,3 +172,4 @@ cython_debug/
 .pypirc
 App/Frontend/.streamlit/secrets.toml
 Database/
+conversation_memory.json

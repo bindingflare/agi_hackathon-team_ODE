@@ -248,7 +248,7 @@ with tab2:
                 }
 
                 with st.spinner("Checking document...", show_time=True):
-                    response = requests.post("http://localhost:8001/check-pdf", files=files)
+                    response = requests.post("http://uvicorn-app:8001/check-pdf", files=files)
 
                 if response.status_code == 200:
                     status_placeholder2.success("✅ Check complete.")

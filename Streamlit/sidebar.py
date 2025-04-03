@@ -182,11 +182,11 @@ def render_chat_interface():
                     st.markdown(message["content"])
             if prompt := st.chat_input("Ask about trade & customs"):
                 if st.session_state.web_search_enabled:
-                    st.sidebar.info("Web search is enabled. Your queries will include relevant web information.")
+                    # st.sidebar.info("Web search is enabled. Your queries will include relevant web information.")
                     enhanced_prompt = enhance_prompt_with_web_search(prompt, web_search_enabled=True)
                     st.session_state.chat_messages.append({"role": "user", "content": enhanced_prompt})
                 else:
-                    st.sidebar.info("Web search is disabled.")
+                    # st.sidebar.info("Web search is disabled.")
                     st.session_state.chat_messages.append({"role": "user", "content": prompt})
                 try:
                     response = requests.post("http://localhost:8000/chat", json={"messages": st.session_state.chat_messages})

@@ -16,7 +16,8 @@ def get_conversation_file_path(conversation_type: str):
       - "pdf_validation": form_memory.json
       그 외에는 conversation_memory.json
     """
-    current_dir = os.path.dirname(os.path.abspath(__file__))
+    current_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               "../Chatbot/chat_history")
     file_names = {
         "sidebar_chat": "chat_history.json",
         "document_processing": "document_memory.json",

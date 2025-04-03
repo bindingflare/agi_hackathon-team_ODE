@@ -171,3 +171,5 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 App/Frontend/.streamlit/secrets.toml
+Database/
+conversation_memory.json

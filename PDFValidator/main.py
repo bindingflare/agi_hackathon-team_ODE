@@ -10,8 +10,8 @@ from langchain_core.messages import HumanMessage
 
 # -------------------- 설정 및 준비된 데이터 --------------------
 app = FastAPI()
-os.environ["UPSTAGE_API_KEY"] = "up_Qjm6V61Ff8WFaxb1XOYG84WNSz4Mn"
-chat = ChatUpstage(api_key=os.environ["UPSTAGE_API_KEY"], model="solar-pro")
+UPSTAGE_API_KEY = os.getenv("UPSTAGE_API_KEY")
+chat = ChatUpstage(api_key=UPSTAGE_API_KEY, model="solar-pro")
 base_dir = os.path.dirname(os.path.abspath(__file__))
 memory_path = os.path.join(base_dir, "memory.json")
 
@@ -40,11 +40,11 @@ def get_conversation_file_path():
 
 # -------------------- 신규: Information Extraction API 클라이언트 --------------------
 client = OpenAI(
-    api_key=os.environ["UPSTAGE_API_KEY"],
+    api_key=UPSTAGE_API_KEY,
     base_url="https://api.upstage.ai/v1/information-extraction"
 )
 client2 = OpenAI(
-    api_key=os.environ["UPSTAGE_API_KEY"],
+    api_key=UPSTAGE_API_KEY,
     base_url="https://api.upstage.ai/v1/information-extraction/schema-generation"
 )
 
@@ -312,7 +312,7 @@ async def health_check():
             "timestamp": datetime.now().isoformat(),
             "service": "pdf-validator",
             "required_files": required_files,
-            "upstage_api_key_configured": bool(os.environ.get("UPSTAGE_API_KEY"))
+            "upstage_api_key_configured": bool(UPSTAGE_API_KEY)
         }
     except Exception as e:
         return {

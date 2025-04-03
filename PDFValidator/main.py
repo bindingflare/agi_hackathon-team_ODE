@@ -29,8 +29,11 @@ additives_df = pd.read_csv("food_additives_prepared.csv")    # 식품첨가물
 
 def filter_df_prepared(df: pd.DataFrame, keywords: list[str]) -> pd.DataFrame:
     """combined_text 열에서 keywords 중 1개 이상 포함되면 필터링"""
+    # Ensure all keywords are strings
+    keywords = [str(kw) for kw in keywords]
+
     mask = df["combined_text"].apply(
-        lambda val: sum(kw in str(val) for kw in keywords) >= 1
+        lambda val: any(kw in str(val) for kw in keywords)
     )
     return df[mask]
 

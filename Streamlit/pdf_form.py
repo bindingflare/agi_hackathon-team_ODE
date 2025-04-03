@@ -32,7 +32,7 @@ def render_pdf_form():
                 }
                 
                 response = requests.post(
-                    "http://uvicorn-app:8001/check-pdf",
+                    "http://pdfvalidator-app:8001/check-pdf",
                     files=files,
                     data=data
                 )

@@ -152,8 +152,10 @@ def render_chat_button():
         # 채팅이 활성화된 경우에만 Web Search 체크박스 표시
         if st.sidebar.checkbox("Web Search", key="chatbot_web_search_enabled"):
             st.sidebar.info("Web search is enabled. Your queries will include relevant web information.")
+            st.session_state.web_search_enabled = True
         else:
             st.sidebar.info("Web search is disabled.")
+            st.session_state.web_search_enabled = False
 
 def render_chat_interface():
     """채팅 인터페이스를 렌더링합니다."""
@@ -178,8 +180,6 @@ def render_chat_interface():
                 with st.chat_message(message["role"]):
                     st.markdown(message["content"])
             if prompt := st.chat_input("Ask about trade & customs"):
-                st.session_state.web_search_enabled = st.sidebar.checkbox("Web Search", key="chatbot_web_search_enabled")
-
                 if st.session_state.web_search_enabled:
                     st.sidebar.info("Web search is enabled. Your queries will include relevant web information.")
                 else:

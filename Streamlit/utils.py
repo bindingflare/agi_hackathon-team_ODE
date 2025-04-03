@@ -136,10 +136,10 @@ def enhance_prompt_with_web_search(prompt: str, web_search_enabled: bool = False
 Please provide a comprehensive response to this query: {prompt}
 
 Make sure to incorporate relevant information from the web search results while maintaining accuracy and relevance."""
-            return enhanced_prompt
+            return prompt, search_result, enhanced_prompt
     except Exception as e:
         print(f"Error enhancing prompt with web search: {str(e)}")
-    return prompt
+    return prompt, None, None
 
 def save_search_result(query: str, result: str):
     """

@@ -173,6 +173,7 @@ cython_debug/
 App/Frontend/.streamlit/secrets.toml
 Database/
 conversation_memory.json
-Chatbot/chat_history/search_history.json
-Chatbot/chat_history/chat_history.json
-Chatbot/chat_history/search_history.json
+Chatbot/chat_history/
+Chatbot/vector_db/
+
+**/secrets.toml

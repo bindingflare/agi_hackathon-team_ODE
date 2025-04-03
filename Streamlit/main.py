@@ -81,6 +81,16 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # 페이지 설정
 st.set_page_config(layout="wide")
 
+st.markdown("""
+    <style>
+    .scrollable-container {
+        max-height: 300px;
+        overflow-y: auto;
+        padding-right: 10px; /* optional: avoids clipping scrollbar */
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 # 채팅 상태 및 인터페이스 초기화 (sidebar.py의 기능 활용)
 render_chat_interface()
 
@@ -88,54 +98,52 @@ DEBUG_MODE = False
 TEST_DEBUG_MODE = False
 
 # Upstage API key 로드
-upstage_api_key = st.secrets.get("UPSTAGE_API_KEY") or os.getenv("UPSTAGE_API_KEY")
+upstage_api_key = os.getenv("UPSTAGE_API_KEY")
 
 st.title("📄FORMula")
 
-tab1, tab2 = st.tabs(["Step 1: Form Upload", "Step 2: Form Validate"])
+tab0, tab1, tab2 = st.tabs(["Step 0: Import JSON", "Step 1: Form Upload", "Step 2: Form Validate"])
+
+# --- Step 0: Import JSOn ---
+with tab0:
+    st.header("Step 0: Import data in JSON format")
+    # Text area to paste JSON input
+    json_input = st.text_area("Paste your JSON here:", height=300)
+
+    if st.button("Submit"):
+        try:
+            # Try to parse and send JSON
+            parsed_json = json.loads(json_input)
+            response = requests.post("http://localhost:8000/your-endpoint", json=parsed_json)
+
+            if response.status_code == 200:
+                st.success("Data sent successfully!")
+                st.write(response.json())
+            else:
+                st.error(f"Failed to send data: {response.status_code}")
+                st.write(response.text)
+        except json.JSONDecodeError:
+            st.error("Invalid JSON format")
 
 # --- Step 1: Form Upload ---
 with tab1:
     st.header("Step 1: Input prompt with initial form")
     
     top_container = st.container()
+
+    with top_container:
+        status_placeholder = st.empty()
     
     with st.form("chat_input_form", clear_on_submit=False):
-        col1, col2, col3 = st.columns([2, 2, 1])
-        with col1:
-            if "fetch_history_toggle" not in st.session_state:
-                st.session_state.fetch_history_toggle = False
-            if st.toggle("Fetch my history", key="fetch_history_toggle"):
-                if not st.session_state.get("history_loaded", False):
-                    user_info = load_user_info()
-                    if user_info:
-                        # 예시: 이전 정보 기반 초기 프롬프트 생성
-                        history_prompt = f"Based on previous info:\nCompany: {user_info.get('company_name', '')}\nIndustry: {user_info.get('industry', '')}\n"
-                        st.session_state.history_prompt = history_prompt
-                        st.session_state.history_loaded = True
-                        st.success("History loaded successfully!")
-                    else:
-                        st.warning("No previous history found.")
-            else:
-                st.session_state.history_loaded = False
-        with col2:
-            if "formula_web_search_enabled" not in st.session_state:
-                st.session_state.formula_web_search_enabled = False
-            if st.toggle("Web Search", key="formula_web_search_enabled"):
-                st.info("Web search is enabled. Your queries will include relevant web information.")
-            else:
-                st.info("Web search is disabled.")
+        step1_web_search_enabled = st.toggle("Web Search (for more up-to date information)", key="step1_web_search_enabled")
 
         initial_text = st.session_state.get("history_prompt", "")
         user_text = st.text_area("Type your message", value=initial_text)
-        uploaded_file = st.file_uploader("Upload a PDF (optional)", type=["pdf"])
+        uploaded_file = st.file_uploader("Upload a PDF", type=["pdf"])
         force_ocr = st.checkbox("Force OCR (for scanned/image PDFs)", value=False)
-        submit_button = st.form_submit_button("Send")
+        submit_button = st.form_submit_button("Submit")
         if "history_prompt" in st.session_state:
             del st.session_state.history_prompt
-    
-    with top_container:
-        status_placeholder = st.empty()
     
     if submit_button and (user_text or uploaded_file):
         with top_container:
@@ -154,7 +162,7 @@ with tab1:
             prompt = user_text
             extracted_text = ""
 
-            if st.session_state.formula_web_search_enabled:
+            if st.session_state.step1_web_search_enabled:
                 prompt = enhance_prompt_with_web_search(prompt, True)
             
             col1, col2 = st.columns(2, gap="small")
@@ -220,9 +228,9 @@ with tab2:
     top_container_2 = st.container()
     
     with st.form("pdf_edit_form", clear_on_submit=False):
-        pdf_file_edit = st.file_uploader("Upload editted PDF file", type=["pdf"])
+        pdf_file_edit = st.file_uploader("Upload editted PDF", type=["pdf"])
         # force_ocr_edit = st.checkbox("Force OCR (for scanned/image PDFs)", value=False)
-        submit_pdf_button = st.form_submit_button("Send PDF")
+        submit_pdf_button = st.form_submit_button("Submit")
 
     if submit_pdf_button:
         with top_container_2:

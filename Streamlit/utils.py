@@ -1,11 +1,16 @@
+from dotenv import load_dotenv
 import json
 import os
 import tempfile
 from datetime import datetime
 from openai import OpenAI
 
+load_dotenv()
+
+OPEN_API_KEY = os.getenv("OPEN_API_KEY")
+
 # OpenAI 클라이언트 초기화
-client = OpenAI(api_key="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")
+client = OpenAI(api_key=OPEN_API_KEY)
 
 def get_conversation_file_path(conversation_type: str):
     """

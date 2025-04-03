@@ -186,8 +186,9 @@ def render_chat_interface():
         if not st.session_state.show_chat:
             st.session_state.show_chat = True
             create_new_chat()
-        chat_input_box = st.empty()
 
+        # Chat input box
+        chat_input_box = st.empty()
         # Web Search checkbox
         st.session_state.web_search_enabled = st.checkbox("Web Search", key="chatbot_web_search_enabled")
 

@@ -11,7 +11,8 @@ services:
       - ./Streamlit:/app
       - streamlit_data:/app/data
     environment:
-      - ENVIRONMENT=development
+      - UPSTAGE_API_KEY
+      - OPENAI_API_KEY
     deploy:
       resources:
         limits:
@@ -47,7 +48,8 @@ services:
       - ./Chatbot:/app
       - chatbot_data:/app/data
     environment:
-      - ENVIRONMENT=development
+      - UPSTAGE_API_KEY
+      - UPSTAGE_EMBEDDING_KEY
     deploy:
       resources:
         limits:
@@ -78,7 +80,7 @@ services:
       - ./PDFValidator:/app
       - pdf_data:/app/data
     environment:
-      - ENVIRONMENT=development
+      - UPSTAGE_API_KEY
     deploy:
       resources:
         limits:

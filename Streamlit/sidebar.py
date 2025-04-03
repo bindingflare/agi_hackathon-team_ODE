@@ -15,8 +15,7 @@ from utils import (
 def load_chat_history():
     try:
         chat_history_dir = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            "../Chatbot/chat_history"
+            os.path.dirname(os.path.abspath(__file__))
         )
         history_file = os.path.join(chat_history_dir, "chat_history.json")
 
@@ -179,9 +178,13 @@ def render_chat_interface():
                 with st.chat_message(message["role"]):
                     st.markdown(message["content"])
             if prompt := st.chat_input("Ask about trade & customs"):
+                st.session_state.web_search_enabled = st.sidebar.checkbox("Web Search", key="chatbot_web_search_enabled")
+
                 if st.session_state.web_search_enabled:
-                    prompt = enhance_prompt_with_web_search(prompt, True)
-                st.session_state.chat_messages.append({"role": "user", "content": prompt})
+                    st.sidebar.info("Web search is enabled. Your queries will include relevant web information.")
+                else:
+                    st.sidebar.info("Web search is disabled.")
+                    st.session_state.chat_messages.append({"role": "user", "content": prompt})
                 try:
                     response = requests.post("http://localhost:8000/chat", json={"messages": st.session_state.chat_messages})
                     if response.status_code == 200:
@@ -205,10 +208,12 @@ def render_chat_interface():
                             if chat["id"] == st.session_state.current_chat_id:
                                 chat["messages"] = st.session_state.chat_messages
                                 from utils import save_conversation
-                                # 전체 대화 데이터를 chat 딕셔너리로 전달합니다.
+                                print(f"[DEBUG] Saving chat: {chat['id']}")
                                 save_conversation("sidebar_chat", chat)
                                 st.session_state.chat_history[key] = chat
                                 break
+                    else:
+                        print("[DEBUG] No current_chat_id, skipping save_conversation")
                     st.rerun()
                 except Exception as e:
                     error_message = f"Error: {str(e)}"

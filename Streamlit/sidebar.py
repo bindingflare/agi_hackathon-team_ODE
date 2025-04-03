@@ -29,16 +29,9 @@ def load_chat_history():
     except Exception as e:
         print(f"Error loading chat history: {str(e)}")
         return {}
-    
-# 세션 초기화: 딕셔너리 형식으로 채팅 기록을 로드
-st.session_state.show_chat = st.session_state.get("show_chat", False)
-st.session_state.chat_messages = st.session_state.get("chat_messages", [])
-st.session_state.current_chat_id = st.session_state.get("current_chat_id", None)
-st.session_state.chat_history = st.session_state.get("chat_history", load_chat_history())
-st.session_state.web_search_enabled = st.session_state.get("web_search_enabled", False)
 
 def create_new_chat():
-    """새로운 채팅을 생성합니다."""
+    """Creates a new chat."""
     try:
         chat_id = f"chat_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
         new_chat = {
@@ -134,99 +127,100 @@ def save_user_info(info):
     except Exception as e:
         print(f"Error saving user information: {str(e)}")
 
-def init_chat_state():
-    """채팅 상태를 초기화합니다."""
-    st.session_state.show_chat = st.session_state.get("show_chat", False)
+def render_chat_interface():
+    """채팅 인터페이스를 렌더링합니다."""
+    st.session_state.show_chat = st.session_state.get("show_chat", True) # always true
     st.session_state.chat_messages = st.session_state.get("chat_messages", [])
     st.session_state.current_chat_id = st.session_state.get("current_chat_id", None)
     st.session_state.chat_history = st.session_state.get("chat_history", load_chat_history())
     st.session_state.web_search_enabled = st.session_state.get("web_search_enabled", False)
 
-def render_chat_button():
-    """채팅 버튼을 렌더링합니다."""
-    if not st.session_state.show_chat:
-        if st.sidebar.button("+ Chatbot"):
-            st.session_state.show_chat = True
-            create_new_chat()
-            st.rerun()
-    else:
-        # 채팅이 활성화된 경우에만 Web Search 체크박스 표시
-        if st.sidebar.checkbox("Web Search", key="chatbot_web_search_enabled"):
-            st.sidebar.info("Web search is enabled. Your queries will include relevant web information.")
-            st.session_state.web_search_enabled = True
-        else:
-            st.sidebar.info("Web search is disabled.")
-            st.session_state.web_search_enabled = False
-
-def render_chat_interface():
-    """채팅 인터페이스를 렌더링합니다."""
     if st.session_state.show_chat:
-        chat_sidebar = st.sidebar.container()
-        with chat_sidebar:
-            st.title("Trade & Customs Assistant")
-            if st.button("New Chat", key="new_chat_sidebar"):
-                st.session_state.chat_messages = []
-                st.session_state.current_chat_id = None
-                st.rerun()
-            st.subheader("Chat History")
-            for chat in st.session_state.chat_history.values():
-                title = chat.get("title", "New Chat")
-                if st.button(title, key=f"chat_{chat['id']}"):
-                    st.session_state.current_chat_id = chat["id"]
-                    st.session_state.chat_messages = chat.get("messages", [])
-                    st.rerun()
-            if not st.session_state.chat_messages:
-                st.info("Welcome! How can I assist you today?")
+        with st.sidebar.container():
+            st.header("📦Trade & Customs Assistant")
+            
+    with st.sidebar.container():
+        st.subheader("Chat History")
+
+        # st.write("Chat History Debug:", st.session_state.chat_history)
+
+        chat_titles = [chat.get("title", "New Chat") for chat in st.session_state.chat_history.values()]
+        chat_ids = [chat["id"] for chat in st.session_state.chat_history.values()]
+
+        selected_title = st.selectbox("Select Chat", chat_titles)
+        selected_chat = next(chat for chat in st.session_state.chat_history.values() if chat.get("title", "New Chat") == selected_title)
+
+        st.session_state.current_chat_id = selected_chat["id"]
+        st.session_state.chat_messages = selected_chat.get("messages", [])
+
+        if not st.session_state.chat_messages:
+            st.info("Welcome! How can I assist you today?")
+        else:
             for message in st.session_state.chat_messages:
                 with st.chat_message(message["role"]):
                     st.markdown(message["content"])
-            if prompt := st.chat_input("Ask about trade & customs"):
-                if st.session_state.web_search_enabled:
-                    st.sidebar.info("Web search is enabled. Your queries will include relevant web information.")
-                    enhanced_prompt = enhance_prompt_with_web_search(prompt, web_search_enabled=True)
-                    st.session_state.chat_messages.append({"role": "user", "content": enhanced_prompt})
-                else:
-                    st.sidebar.info("Web search is disabled.")
-                    st.session_state.chat_messages.append({"role": "user", "content": prompt})
-                try:
-                    response = requests.post("http://localhost:8000/chat", json={"messages": st.session_state.chat_messages})
-                    if response.status_code == 200:
-                        bot_message = response.json()["response"]
-                        st.session_state.chat_messages.append({"role": "assistant", "content": bot_message})
-                        if len(st.session_state.chat_messages) == 2:
-                            title = generate_chat_title(st.session_state.chat_messages)
-                            for key, chat in st.session_state.chat_history.items():
-                                if chat["id"] == st.session_state.current_chat_id:
-                                    chat["title"] = title
-                                    st.session_state.chat_history[key] = chat
-                                    break
-                        user_info = extract_user_info(st.session_state.chat_messages)
-                        if user_info:
-                            save_user_info(user_info)
-                    else:
-                        error_message = f"Error: {response.status_code}"
-                        st.session_state.chat_messages.append({"role": "assistant", "content": error_message})
-                    if st.session_state.current_chat_id:
+
+        if not st.session_state.show_chat:
+            st.session_state.show_chat = True
+            create_new_chat()
+
+        chat_input_box = st.empty()
+
+        # Web Search checkbox
+        st.session_state.web_search_enabled = st.checkbox("Web Search", key="chatbot_web_search_enabled")
+
+        if prompt := chat_input_box.chat_input("Ask about trade & customs"):
+            if st.session_state.web_search_enabled:
+                st.info("Web search is enabled. Your queries will include relevant web information.")
+                enhanced_prompt = enhance_prompt_with_web_search(prompt, web_search_enabled=True)
+                st.session_state.chat_messages.append({"role": "user", "content": enhanced_prompt})
+            else:
+                st.info("Web search is disabled.")
+                st.session_state.chat_messages.append({"role": "user", "content": prompt})
+
+            try:
+                response = requests.post("http://localhost:8000/chat", json={"messages": st.session_state.chat_messages})
+                if response.status_code == 200:
+                    bot_message = response.json()["response"]
+                    st.session_state.chat_messages.append({"role": "assistant", "content": bot_message})
+
+                    # Generate chat title if it's a new chat
+                    if len(st.session_state.chat_messages) == 2:
+                        title = generate_chat_title(st.session_state.chat_messages)
                         for key, chat in st.session_state.chat_history.items():
                             if chat["id"] == st.session_state.current_chat_id:
-                                chat["messages"] = st.session_state.chat_messages
-                                from utils import save_conversation
-                                print(f"[DEBUG] Saving chat: {chat['id']}")
-                                save_conversation("sidebar_chat", chat)
+                                chat["title"] = title
                                 st.session_state.chat_history[key] = chat
                                 break
-                    else:
-                        print("[DEBUG] No current_chat_id, skipping save_conversation")
-                    st.rerun()
-                except Exception as e:
-                    error_message = f"Error: {str(e)}"
+
+                    # Save user info if available
+                    user_info = extract_user_info(st.session_state.chat_messages)
+                    if user_info:
+                        save_user_info(user_info)
+
+                else:
+                    error_message = f"Error: {response.status_code}"
                     st.session_state.chat_messages.append({"role": "assistant", "content": error_message})
-                    st.rerun()
+
+                # Save conversation
+                if st.session_state.current_chat_id:
+                    for key, chat in st.session_state.chat_history.items():
+                        if chat["id"] == st.session_state.current_chat_id:
+                            chat["messages"] = st.session_state.chat_messages
+                            from utils import save_conversation
+                            print(f"[DEBUG] Saving chat: {chat['id']}")
+                            save_conversation("sidebar_chat", chat)
+                            st.session_state.chat_history[key] = chat
+                            break
+                else:
+                    print("[DEBUG] No current_chat_id, skipping save_conversation")
+
+            except Exception as e:
+                error_message = f"Error: {str(e)}"
+                st.session_state.chat_messages.append({"role": "assistant", "content": error_message})
 
 
 def main():
-    init_chat_state()
-    render_chat_button()
     render_chat_interface()
 
 if __name__ == "__main__":

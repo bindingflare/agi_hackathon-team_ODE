@@ -17,130 +17,17 @@
       {
         "role": "assistant",
         "content": "HS code, or Harmonized System code, is an internationally standardized nomenclature and numbering system used for classifying products for customs purposes. The code consists of six-digit basic codes, with additional digits (2-4) added by individual countries. For example, \"850650\" is the HS code for lithium-ion batteries, while \"870323\" represents passenger cars with an engine capacity of over 1500cc and up to 3000cc. \n"
+      },
+      {
+        "role": "user",
+        "content": "Based on the following web search results:\n\nIt seems like your message got a bit garbled. Could you clarify what you meant or ask a specific question?\n\nPlease provide a comprehensive response to this query: joifejife\n\nMake sure to incorporate relevant information from the web search results while maintaining accuracy and relevance."
+      },
+      {
+        "role": "assistant",
+        "content": "It appears that the message \"joifejife\" does not provide any context or specific information to formulate a response. However, based on the search results, I can infer that you might be asking for clarification or further information. Please provide more context or a specific question, and I'll do my best to assist you with accurate and relevant information."
       }
     ],
     "title": "Name and Capabilities",
     "timestamp": "20250403_224318"
-  },
-  "chat_20250403_224730": {
-    "id": "chat_20250403_224730",
-    "messages": [
-      {
-        "role": "user",
-        "content": "How are you?"
-      },
-      {
-        "role": "assistant",
-        "content": "I'm an AI assistant, so I don't have feelings, but I'm here and ready to assist you with any questions you have about international trade procedures, HS codes, customs documentation, and regulations."
-      },
-      {
-        "role": "user",
-        "content": "What about HS code? can you explain?"
-      },
-      {
-        "role": "assistant",
-        "content": "Sure! The Harmonized System (HS) is an international standardized nomenclature and code system used to classify traded products. It is maintained by the World Customs Organization (WCO). The HS code is composed of 6-digits as the basic code, with many countries adding 2-4 additional digits for further detail. For example, \"850650\" is the HS code for lithium-ion batteries, and \"870323\" is the HS code for a passenger car with a capacity of more than 1500cc but not exceeding 3000cc."
-      }
-    ],
-    "title": "Conversation Title: Greeting",
-    "timestamp": "20250403_224730"
-  },
-  "chat_20250403_224922": {
-    "id": "chat_20250403_224922",
-    "messages": [
-      {
-        "role": "user",
-        "content": "Search by web, guideline of CBP form 28"
-      },
-      {
-        "role": "assistant",
-        "content": "Unfortunately, as a text-based AI model, I don't have the ability to browse the internet or search for specific documents like CBP Form 28. However, I can provide you with some general information about CBP Form 28.\n\nCBP Form 28, also known as the \"Notice of Action,\" is a document issued by U.S. Customs and Border Protection (CBP) to notify the importer or exporter about actions taken or to be taken by the CBP. This form is used for various purposes, such as to notify about changes in the importer's or exporter's status, to request additional information, or to inform about the release or detention of cargo.\n\nFor detailed guidelines and instructions on CBP Form 28, I would recommend visiting the official U.S. Customs and Border Protection website or contacting the CBP directly. They can provide you with accurate and up-to-date information regarding the form and its usage."
-      },
-      {
-        "role": "user",
-        "content": "It is about my info. my phone number is 01046347512"
-      },
-      {
-        "role": "assistant",
-        "content": "If you are referring to a CBP Form 28 that has been issued to you and contains your personal information, such as your phone number, it's important to ensure that the information is accurate and up-to-date. If you believe there is an error or if you have any concerns about the form, you should contact U.S. Customs and Border Protection (CBP) directly to resolve the issue.\n\nHere are the steps you can follow:\n\n1. Locate the CBP Form 28: If you have a copy of the form, review it carefully to understand the reason for the notification and any actions you need to take.\n2. Contact CBP: Reach out to the CBP by phone or email to discuss the contents of the form and address any concerns. You can find the appropriate contact information on the CBP website or by searching for the specific CBP office responsible for your case.\n3. Provide accurate information: When communicating with CBP, make sure to provide accurate and complete information to help resolve the issue efficiently.\n4. Follow up: If you don't receive a response or if the issue is not resolved after your initial contact, consider following up with CBP to ensure that your concerns are addressed."
-      }
-    ],
-    "title": "\"Search Web: CBP...",
-    "timestamp": "20250403_224922"
-  },
-  "chat_20250403_225956": {
-    "id": "chat_20250403_225956",
-    "messages": [
-      {
-        "role": "user",
-        "content": "웹 서치를 통해 HS code에 대해 상세히 설명해줘"
-      },
-      {
-        "role": "assistant",
-        "content": "HS 코드는 1988년 국제 협약에 의해 제정된 국제 관세 분류 체계로, 상품의 무역 및 통관 과정에서 상품의 종류와 특성을 식별하고 분류하기 위해 사용됩니다. 이 체계는 6자리 기본 코드와 국가별로 추가되는 2~4자리 코드로 구성되며, 이를 통해 전 세계적으로 통일된 상품 분류 체계를 제공합니다.\n\nHS 코드의 주요 특징은 다음과 같습니다:\n\n1. 6자리의 기본 코드는 전 세계적으로 통일되어 있으며, 각 국가마다 추가 코드가 부여됩니다.\n2. HS 코드는 상품의 종류, 재질, 용도 등을 고려하여 분류됩니다.\n3. HS 코드는 관세율, 무역 통계, 통관 절차 등 다양한 무역 관련 분야에서 사용됩니다.\n4. HS 코드는 국제 협약에 의해 정기적으로 개정되어 새로운 상품과 기술을 반영합니다.\n\n예를 들어, HS 코드 850650은 리튬 이온 배터리를, HS 코드 870323은 1500cc 이상 3000cc 이하 승용차를 나타냅니다. 이러한 HS 코드를 사용하여 각 국가의 관세율과 통관 절차를 파악하고, 정확한 무역 서류를 작성할 수 있습니다."
-      },
-      {
-        "role": "user",
-        "content": "웹 서칭을 한거야?"
-      },
-      {
-        "role": "assistant",
-        "content": "아니요, 제가 제공하는 정보는 웹 서칭이 아니라 제가 보유한 전문 지식과 데이터베이스에서 가져온 것입니다. 저는 국제 무역 절차, HS 코드, 관세 서류, 규제 등에 대해 전문적인 지식을 가지고 있습니다."
-      }
-    ],
-    "title": "HS Code 설명...",
-    "timestamp": "20250403_225956"
-  },
-  "chat_20250403_231756": {
-    "id": "chat_20250403_231756",
-    "messages": [
-      {
-        "role": "assistant",
-        "content": "Understood. As a specialized Trade and Customs Assistant, I am here to provide accurate and helpful information on international trade procedures, HS codes, customs documentation, regulations, and more. Please let me know how I can assist you today."
-      }
-    ],
-    "title": "New Chat",
-    "timestamp": "20250403_231756"
-  },
-  "chat_20250403_231925": {
-    "id": "chat_20250403_231925",
-    "messages": [
-      {
-        "role": "assistant",
-        "content": "Hello! I'm here to assist you with any questions about international trade procedures, HS codes, customs documentation, and regulations. How can I help you today?"
-      }
-    ],
-    "title": "New Chat",
-    "timestamp": "20250403_231925"
-  },
-  "chat_20250403_232450": {
-    "id": "chat_20250403_232450",
-    "messages": [
-      {
-        "role": "user",
-        "content": "Based on the following web search results:\n\nHS 코드(Harmonized System Code)는 세계관세기구(WCO)가 개발한 국제적으로 통일된 상품 분류 체계로, 국제 무역에서 거래되는 상품을 식별하고 분류하는 데 사용됩니다. 이 코드는 전 세계 200여 개국에서 수출입 통관, 관세 부과, 무역 통계 작성 등의 목적으로 활용되고 있습니다. ([affmu.com](https://www.affmu.com/ko/hs-codes.html?utm_source=openai))\n\n**HS 코드의 구조:**\n\nHS 코드는 기본적으로 6자리 숫자로 구성되며, 각 숫자 쌍은 다음과 같은 의미를 가집니다:\n\n- **처음 두 자리(장, Chapter):** 상품의 대분류를 나타냅니다. 예를 들어, '01'은 살아 있는 동물을 의미합니다.\n\n- **세 번째와 네 번째 자리(호, Heading):** 장 내에서의 세부 분류를 나타냅니다. 예를 들어, '0101'은 말과 당나귀 등을 의미합니다.\n\n- **다섯 번째와 여섯 번째 자리(소호, Subheading):** 더 세분화된 분류를 제공합니다. 예를 들어, '0101.10'은 순종 번식용 말을 의미합니다.\n\n일부 국가에서는 자국의 통관 및 통계 목적에 따라 6자리 이후에 추가 숫자를 붙여 8자리, 10자리 등으로 세분화하여 사용하기도 합니다. ([seenthis.kr](https://seenthis.kr/hscode/1228?utm_source=openai))\n\n**HS 코드의 중요성:**\n\n1. **관세율 결정:** HS 코드는 수출입 물품의 관세율을 결정하는 데 중요한 역할을 합니다. 잘못된 HS 코드를 적용하면 관세율이 달라져 손해를 보거나 추징을 받을 수 있습니다. ([dhl.com](https://www.dhl.com/discover/ko-kr/ship-with-dhl/hs-codes-guide?utm_source=openai))\n\n2. **통관 절차:** 세관은 HS 코드를 사용하여 물품을 적절하게 분류하고 식별합니다. 정확한 HS 코드 입력은 통관 지연을 방지하고 원활한 절차를 보장합니다. ([fedex.com](https://www.fedex.com/ko-kr/small-business/getting-started/customs-101-hs-code.html?utm_source=openai))\n\n3. **무역 통계 및 규제:** HS 코드는 국제 무역 통계 작성과 무역 규제 적용에 활용되어, 각국의 무역 상황 파악과 정책 수립에 기여합니다. ([affmu.com](https://www.affmu.com/ko/hs-codes.html?utm_source=openai))\n\n**HS 코드 확인 방법:**\n\n상품의 정확한 HS 코드를 확인하려면 해당 국가의 세관 웹사이트나 관련 기관에서 제공하는 HS 코드 조회 도구를 활용할 수 있습니다. 또한, 전문 무역 컨설팅 회사나 세관 기관에 문의하여 정확한 정보를 얻는 것도 도움이 됩니다. ([hongocean.com](https://hongocean.com/ko/what-is-hs-code/?utm_source=openai))\n\n정확한 HS 코드의 사용은 국제 무역에서 필수적이며, 이를 통해 통관 절차의 효율성을 높이고 무역 관련 문제를 예방할 수 있습니다. \n\nPlease provide a comprehensive response to this query: 웹 서치를 해서 HS코드에 대해서 알려줘\n\nMake sure to incorporate relevant information from the web search results while maintaining accuracy and relevance."
-      },
-      {
-        "role": "assistant",
-        "content": "HS 코드(Harmonized System Code)는 세계관세기구(WCO)가 개발한 국제 상품 분류 체계로, 전 세계 200여 개국에서 수출입 통관, 관세 부과, 무역 통계 작성 등의 목적으로 활용됩니다. HS 코드는 기본적으로 6자리 숫자로 구성되며, 각 숫자 쌍은 상품의 대분류(장, Chapter), 세부 분류(호, Heading), 더 세분화된 분류(소호, Subheading)를 나타냅니다. 일부 국가에서는 6자리 이후에 추가 숫자를 붙여 더 세분화하여 사용하기도 합니다.\n\nHS 코드의 중요성은 다음과 같습니다:\n\n1. 관세율 결정: HS 코드는 수출입 물품의 관세율을 결정하는 데 중요한 역할을 합니다. 잘못된 HS 코드를 적용하면 관세율이 달라져 손해를 보거나 추징을 받을 수 있습니다.\n\n2. 통관 절차: 세관은 HS 코드를 사용하여 물품을 적절하게 분류하고 식별합니다. 정확한 HS 코드 입력은 통관 지연을 방지하고 원활한 절차를 보장합니다.\n\n3. 무역 통계 및 규제: HS 코드는 국제 무역 통계 작성과 무역 규제 적용에 활용되어, 각국의 무역 상황 파악과 정책 수립에 기여합니다.\n\n상품의 정확한 HS 코드를 확인하려면 해당 국가의 세관 웹사이트나 관련 기관에서 제공하는 HS 코드 조회 도구를 활용할 수 있습니다. 또한, 전문 무역 컨설팅 회사나 세관 기관에 문의하여 정확한 정보를 얻는 것도 도움이 됩니다. 정확한 HS 코드의 사용은 국제 무역에서 필수적이며, 이를 통해 통관 절차의 효율성을 높이고 무역 관련 문제를 예방할 수 있습니다."
-      }
-    ],
-    "title": "HS 코드(Harmonized System...",
-    "timestamp": "20250403_232450"
-  },
-  "chat_20250403_232956": {
-    "id": "chat_20250403_232956",
-    "messages": [
-      {
-        "role": "user",
-        "content": "HS코드가 뭐야?"
-      },
-      {
-        "role": "assistant",
-        "content": "HS 코드는 국제 표준화된 명칭 및 번호 체계로, 수출입 상품 분류에 사용됩니다. 이 코드는 상품의 종류와 특성을 반영하며, 6자리 기본 코드에 국가별로 2~4자리 추가 코드가 붙을 수 있습니다. 예를 들어, 리튬 이온 배터리는 850650, 1500cc 이상 3000cc 이하 승용차는 870323 등의 HS 코드가 부여됩니다."
-      }
-    ],
-    "title": "Understanding HS Codes",
-    "timestamp": "20250403_232956"
   }
 }

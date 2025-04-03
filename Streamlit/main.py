@@ -8,7 +8,7 @@ import sys
 from langchain_upstage import ChatUpstage
 from langchain.schema import HumanMessage
 import requests
-from sidebar import init_chat_state, render_chat_button, render_chat_interface
+from sidebar import render_chat_interface
 from utils import (
     save_conversation, 
     load_conversations, 
@@ -82,8 +82,6 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 st.set_page_config(layout="wide")
 
 # 채팅 상태 및 인터페이스 초기화 (sidebar.py의 기능 활용)
-init_chat_state()
-render_chat_button()
 render_chat_interface()
 
 DEBUG_MODE = False

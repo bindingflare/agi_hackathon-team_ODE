@@ -201,7 +201,7 @@ def render_chat_interface():
             if st.session_state.web_search_enabled:
                 st.info("Web search is enabled. Your queries will include relevant web information.")
                 prompt, search_result, enhanced_prompt = enhance_prompt_with_web_search(prompt, web_search_enabled=True)
-                st.session_state.chat_messages.append({"role": "user", "content": enhanced_prompt})
+                st.session_state.chat_messages.append({"role": "user", "content": prompt})
             else:
                 st.info("Web search is disabled.")
                 search_result, enhanced_prompt = None, None

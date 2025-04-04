@@ -68,7 +68,7 @@ def stream_response(prompt):
     chat = ChatUpstage(
         upstage_api_key=upstage_api_key,
         model_name="solar-pro-241126",
-        temperature=0.7,
+        temperature=0.1,
         stream=True,
     )
 

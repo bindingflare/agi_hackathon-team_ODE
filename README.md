@@ -2,7 +2,7 @@
 > All teams submitting their project must create a README.md file following this guideline.  
 > Please make sure to replace all placeholder texts (e.g., [Project Title], [Describe feature]) with actual content.
 
-# 🛠️ FORMulator - Trade & Customs Assistant
+# 🛠️ FORMula - o1보다 강력한 Rag 기반 Form 작성 Agent
 
 ### 📌 Overview
 This project was developed as part of the AGI Agent Application Hackathon. It aims to solve the common pain point of filling out complex forms and documents, especially when users are unsure of how to write them or what information is valid.
@@ -12,11 +12,11 @@ This project was developed as part of the AGI Agent Application Hackathon. It ai
    - Q&A on trade/customs-related topics.
    - Integrated web search.
    - Conversation history storage.
-- ✅  **PDF Document Validation (Specific Domain)**:
+- ✅  **PDF Document Validation**:
    - Extract document information and compare with internal data.
    - Real-time information retrieval (via web search).
    - Other fixes.
-- ✅ **Database Integration**:
+- ✅ **Domain Knowledge: Trade & Customs Assistant**:
    - Check for regulatory compliance.
    - Inspection for hazardous substances/food additives.
 

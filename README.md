@@ -69,7 +69,7 @@ This project was developed as part of the AGI Agent Application Hackathon. It ai
 
 ```bash
 # Clone the repository
-git clone https://github.com/bindingflare/agi_hackathon-team_ODE/
+git clone https://github.com/bindingflare/agi_hackathon-team_ODE.git
 cd agi_hackathon-team_ODE
 ```
 
@@ -92,7 +92,6 @@ OPENAI_API_KEY = "your_api_key"
 ```
 
 ```bash
-# Run with Docker Compose
 # Run with Docker Compose
 docker-compose up -d
 ```

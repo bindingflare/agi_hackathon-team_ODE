@@ -61,27 +61,35 @@ agi_hackathon-team_ODE/
 
 ## 설치 및 실행
 
-1. 환경 설정
+1. Git Clone
 ```bash
 # 저장소 클론
 git clone [repository_url]
 cd agi_hackathon-team_ODE
+```
 
+2. API 키 설정(.env)
+```
+./Chatbot/.env
+UPSTAGE_API_KEY = "your_api_key"
+UPSTAGE_EMBEDDING_KEY = "your_api_key"
+
+./PDFValidator/.env
+UPSTAGE_API_KEY = "your_api_key"
+
+./Streamlit/.env
+UPSTAGE_API_KEY = "your_api_key"
+OPENAI_API_KEY = "your_api_key"
+```
+
+3. 도커 컴포즈 실행
+```
 # 도커 컴포즈로 실행
 docker-compose up -d
 ```
 
-2. API 키 설정
-```
-UPSTAGE_API_KEY = "your_api_key"
-EMBEDDING_API_KEY
-OPENAI_KEY
-```
-
-3. 접속
+4. 접속
 - Streamlit UI: http://localhost:8501
-- FastAPI 서버: http://localhost:8000
-- PDF 검증 서비스: http://localhost:8002
 
 ## 팀 소개
 

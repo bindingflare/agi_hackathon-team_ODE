@@ -104,12 +104,12 @@ http://localhost:8501
 ### 📁 Dataset & References
 - **Dataset used**: US Customs & Border Protection, FDA - Food & Drug Administration (USA), KITA - Korea International Trade Association, KATI Database (aT - Korea Agro-Fisheries & Food Trade Corporation)
 - **References / Resources**:  
-  1. https://www.cbp.gov/newsroom/publications/forms
+  1. https://www.cbp.gov/newsroom/publications/forms (Example: CBP Form 7533)
   2. https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements/guidance-documents-regulatory-information-topic-food-and-dietary-supplements
   3. https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements
   4. https://www.fda.gov/industry/fda-import-process/prior-notice-imported-foods
   
-  5. https://www.kita.net/board/format/formatList.do
+  5. https://www.kita.net/board/format/formatList.do (Example: 한미 FTA 원산지증명서)
   
   6. https://www.kati.net/additive/additiveList.do
 

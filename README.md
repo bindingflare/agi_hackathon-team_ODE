@@ -10,27 +10,35 @@ agi_hackathon-team_ODE/
 ├── Chatbot/                    # 챗봇 백엔드 서버
 │   ├── main.py                # FastAPI 서버 구현
 │   ├── requirements.txt       # 백엔드 의존성
+│   ├── .env                  # 환경 변수 설정
 │   ├── vector_db/            # 벡터 데이터베이스 저장소
-│   └── chat_history/         # 채팅 기록 저장소
+│   ├── data/                 # 데이터 저장소
+│   └── base_knowledge_memory.json  # 기본 지식 저장소
 │
 ├── Streamlit/                 # 프론트엔드 웹 인터페이스
 │   ├── main.py               # 메인 Streamlit 앱
+│   ├── pdf_form.py          # PDF 폼 관련 기능
 │   ├── sidebar.py            # 사이드바 UI 컴포넌트
 │   ├── utils.py              # 유틸리티 함수들
 │   ├── requirements.txt      # 프론트엔드 의존성
+│   ├── .env                 # 환경 변수 설정
+│   ├── data/                # 데이터 저장소
 │   └── .streamlit/          # Streamlit 설정
-│       ├── config.toml
-│       └── secrets.toml     # API 키 설정
 │
 ├── PDFValidator/             # PDF 문서 검증 서비스
 │   ├── main.py              # FastAPI 서버
-│   └── requirements.txt     # PDF 검증 의존성
+│   ├── requirements.txt     # PDF 검증 의존성
+│   ├── .env                # 환경 변수 설정
+│   ├── data/               # 데이터 저장소
+│   └── memory.json         # 메모리 저장소
 │
 ├── Database/                 # 데이터베이스 관련 파일
-│   └── data/               # 원본 데이터 저장소
+│   ├── Merged/             # 병합된 데이터
+│   ├── Embedding/          # 임베딩 데이터
+│   └── Connection/         # 데이터베이스 연결
 │
-├── docker-compose.yaml       # 도커 컴포즈 설정
-├── requirements.txt         # 공통 의존성
+├── .devcontainer/           # 개발 컨테이너 설정
+├── docker-compose.yaml      # 도커 컴포즈 설정
 └── README.md               # 프로젝트 문서
 ```
 

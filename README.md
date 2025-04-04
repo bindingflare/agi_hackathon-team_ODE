@@ -68,7 +68,9 @@ git clone [repository_url]
 cd agi_hackathon-team_ODE
 ```
 
-2. Set API Keys (.env)
+2. Copy zip file to ./Database (Keep file structuree intact!)
+
+3. Set API Keys (.env)
 ```
 ./Chatbot/.env
 UPSTAGE_API_KEY = "your_api_key"

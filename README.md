@@ -102,7 +102,7 @@ http://localhost:8501
 ```
 
 ### 📁 Dataset & References
-- **Dataset used**: FDA - Food & Drug Administration (USA), KITA - Korea International Trade Association, KATI Database (aT - Korea Agro-Fisheries & Food Trade Corporation)
+- **Dataset used**: US Customs & Border Protection, FDA - Food & Drug Administration (USA), KITA - Korea International Trade Association, KATI Database (aT - Korea Agro-Fisheries & Food Trade Corporation)
 - **References / Resources**:  
   1. https://www.cbp.gov/newsroom/publications/forms
   2. https://www.fda.gov/food/guidance-regulation-food-and-dietary-supplements/guidance-documents-regulatory-information-topic-food-and-dietary-supplements

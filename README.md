@@ -1,12 +1,34 @@
-# FORMulator - Trade & Customs Assistant
+> 📢 **Notice:**  
+> All teams submitting their project must create a README.md file following this guideline.  
+> Please make sure to replace all placeholder texts (e.g., [Project Title], [Describe feature]) with actual content.
 
-The world's simplest and most powerful form-filling agent  
-This repository is specialized in intelligent responses related to trade (K-FOOD exports) and customs inquiries.
+# 🛠️ FORMulator - Trade & Customs Assistant
 
-## Project Structure
+### 📌 Overview
+This project was developed as part of the AGI Agent Application Hackathon. It aims to solve the common pain point of filling out complex forms and documents, especially when users are unsure of how to write them or what information is valid.
 
+### 🚀 Key Features
+- ✅ **Chatbot Service**:
+   - Q&A on trade/customs-related topics.
+   - Integrated web search.
+   - Conversation history storage.
+- ✅  **PDF Document Validation (Specific Domain)**:
+   - Extract document information and compare with internal data.
+   - Real-time information retrieval (via web search).
+   - Other fixes.
+- ✅ **Database Integration**:
+   - Check for regulatory compliance.
+   - Inspection for hazardous substances/food additives.
+
+### 🧩 Tech Stack
+- **Frontend**: Streamlit
+- **Backend**: FastAPI
+- **Database**: VectorDB
+- **Others**: Docker, LangChain, GPT-4o Search Preview, Upstage Embeddings API, Upstage Document Parsing API, Solar Pro
+
+### 🏗️ Project Structure
 ```
-agi_hackathon-team_ODE/
+📁 agi_hackathon-team_ODE/
 ├── Chatbot/                    # Chatbot backend server
 │   ├── main.py                # FastAPI server implementation
 │   ├── requirements.txt       # Backend dependencies
@@ -42,36 +64,20 @@ agi_hackathon-team_ODE/
 └── README.md                  # Project documentation
 ```
 
-## Key Features
+### 🔧 Setup & Installation
 
-1. **Chatbot Service**
-   - Q&A on trade/customs-related topics
-   - Integrated web search
-   - Conversation history storage
-
-2. **PDF Document Validation**
-   - Extract document information and compare with internal data
-   - Check for regulatory compliance
-   - Inspection for hazardous substances/food additives
-   - Other fixes
-
-3. **Database Integration**
-   - Use of vector database
-   - Real-time information retrieval (via Web Search API)
-
-## Installation & Execution
-
-1. Git Clone
 ```bash
 # Clone the repository
-git clone [repository_url]
+git clone https://github.com/bindingflare/agi_hackathon-team_ODE/
 cd agi_hackathon-team_ODE
 ```
 
-2. Copy zip file to ./Database (Keep file structuree intact!)
-
-3. Set API Keys (.env)
+```bash
+# Copy zip file to ./Database (Keep file structure intact!)
 ```
+
+```bash
+# Set API Keys (.env)
 ./Chatbot/.env
 UPSTAGE_API_KEY = "your_api_key"
 UPSTAGE_EMBEDDING_KEY = "your_api_key"
@@ -84,21 +90,41 @@ UPSTAGE_API_KEY = "your_api_key"
 OPENAI_API_KEY = "your_api_key"
 ```
 
-3. Run with Docker Compose
 ```bash
+# Run with Docker Compose
 # Run with Docker Compose
 docker-compose up -d
 ```
 
-4. Access
-- Streamlit UI: http://localhost:8501
+```bash
+# Access Streamlit UI
+http://localhost:8501
+```
 
-## Team Members
+### 📁 Dataset & References
+- **Dataset used**: [source and brief explanation]
+- **References / Resources**:  
+  [link 1]  
+  [link 2]
 
-| Name   | Role   | Email                     |
+### 🙌 Team Members
+
+| Name   | Role   | Github                     |
 |--------|--------|---------------------------|
-| 방준현 | Team Lead | junhb@yonsei.ac.kr         |
-| 손재훈 | Member    | 2021122006@yonsei.ac.kr   |
-| 이재영 | Member    | jaeyoung02@yonsei.ac.kr   |
-| 윤희찬 | Member    | jason0295@yonsei.ac.kr    |
-| 김정인 | Member    | jungin0210@yonsei.ac.kr   |
+| 방준현 | Team Lead  | [@bindingflare](https://github.com/bindingflare)         |
+| 손재훈 | Backend    | [@wognsths](https://github.com/wognsths)   |
+| 이재영 | Modelling  | [@sleepylee02](https://github.com/sleepylee02)   |
+| 윤희찬 | Backend, Modelling    | [@quant-jason](https://github.com/quant-jason)   |
+| 김정인 | Front-End    | [@jungin7612](https://github.com/jungin7612)   |
+
+### ⏰ Development Period
+- Last updated: 2025-04-04
+
+### 📄 License
+This project is licensed under the [MIT license](https://opensource.org/licenses/MIT).  
+See the LICENSE file for more details.
+
+### 💬 Additional Notes
+- Feel free to include any other relevant notes or links here.
+
+

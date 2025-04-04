@@ -1,6 +1,7 @@
-# Trade & Customs Assistant
+# FORMulator - Trade & Customs Assistant
 
-무역 및 통관 관련 문의에 대한 지능형 응답 시스템입니다.
+세상에서 가장 간단하고 강력한 Form 작성 Agent
+현재 레포는 무역 및 통관 관련 문의에 대한 지능형 응답에 특화된 시스템입니다.
 
 ## 프로젝트 구조
 
@@ -63,9 +64,10 @@ docker-compose up -d
 ```
 
 2. API 키 설정
-- `Streamlit/.streamlit/secrets.toml` 파일에 필요한 API 키 설정
-```toml
+```
 UPSTAGE_API_KEY = "your_api_key"
+EMBEDDING_API_KEY
+OPENAI_KEY
 ```
 
 3. 접속
@@ -73,27 +75,12 @@ UPSTAGE_API_KEY = "your_api_key"
 - FastAPI 서버: http://localhost:8000
 - PDF 검증 서비스: http://localhost:8002
 
-## 개발 환경 설정
+## 팀 소개
 
-각 서비스별 로컬 개발 시:
-
-1. Streamlit 프론트엔드
-```bash
-cd Streamlit
-pip install -r requirements.txt
-streamlit run main.py
-```
-
-2. FastAPI 백엔드
-```bash
-cd Chatbot
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-
-3. PDF 검증 서비스
-```bash
-cd PDFValidator
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
+| 이름   | 역할   | 이메일                     |
+|--------|--------|----------------------------|
+| 방준현 | 팀장   | junhb@yonsei.ac.kr         |
+| 손재훈 | 팀원   | 2021122006@yonsei.ac.kr   |
+| 이재영 | 팀원   | jaeyoung02@yonsei.ac.kr   |
+| 윤희찬 | 팀원   | jason0295@yonsei.ac.kr    |
+| 김정인 | 팀원   | jungin0210@yonsei.ac.kr   |

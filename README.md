@@ -25,7 +25,7 @@ This project was developed as part of the AGI Agent Application Hackathon. It ai
 - **Frontend**: Streamlit
 - **Backend**: FastAPI
 - **Database**: 
-- **Others**: Docker, LangChain, GPT-4o Search Preview, Upstage Embeddings API, Upstage Document Parsing API, Solar Pro
+- **Others**: Docker, LangChain, GPT-4o Search Preview, Solar Pro, Upstage Document Parsing API, Upstage Embeddings API, Upstage Information Extract API
 
 ### 🏗️ Project Structure
 ```

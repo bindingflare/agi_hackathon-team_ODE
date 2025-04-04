@@ -9,7 +9,7 @@ This project was developed as part of the AGI Agent Application Hackathon. It ai
 
 ### 🚀 Key Features
 - ✅ **Chatbot Service**:
-   - Q&A on trade/customs-related topics.
+   - Q&A on domain-related topics.
    - Integrated web search.
    - Conversation history storage.
 - ✅  **PDF Document Validation**:
@@ -19,6 +19,7 @@ This project was developed as part of the AGI Agent Application Hackathon. It ai
 - ✅ **Domain Knowledge: Trade & Customs Assistant**:
    - Check for regulatory compliance.
    - Inspection for hazardous substances/food additives.
+   - Provide analysis of all fields and what are missing.
 
 ### 🧩 Tech Stack
 - **Frontend**: Streamlit
